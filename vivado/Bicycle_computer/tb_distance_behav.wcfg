@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_distance_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_distance" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="8970195402298fs"></ZoomStartTime>
+      <ZoomEndTime time="10259960919541fs"></ZoomEndTime>
+      <Cursor1Time time="10045000000000fs"></Cursor1Time>
+   </zoom_setting>
+   <WVObjectSize size="9" />
+   <wvobject type="logic" fp_name="/tb_distance/clock">
+      <obj_property name="ElementShortName">clock</obj_property>
+      <obj_property name="ObjectShortName">clock</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_distance/reset">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_distance/reed">
+      <obj_property name="ElementShortName">reed</obj_property>
+      <obj_property name="ObjectShortName">reed</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_distance/circ">
+      <obj_property name="ElementShortName">circ[7:0]</obj_property>
+      <obj_property name="ObjectShortName">circ[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_distance/distance">
+      <obj_property name="ElementShortName">distance[13:0]</obj_property>
+      <obj_property name="ObjectShortName">distance[13:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_distance/CLOCKPERIOD">
+      <obj_property name="ElementShortName">CLOCKPERIOD[31:0]</obj_property>
+      <obj_property name="ObjectShortName">CLOCKPERIOD[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_distance/DUT/circ_cnt_r">
+      <obj_property name="ElementShortName">circ_cnt_r[13:0]</obj_property>
+      <obj_property name="ObjectShortName">circ_cnt_r[13:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_distance/DUT/distance_r">
+      <obj_property name="ElementShortName">distance_r[13:0]</obj_property>
+      <obj_property name="ObjectShortName">distance_r[13:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_distance/DUT/compare">
+      <obj_property name="ElementShortName">compare</obj_property>
+      <obj_property name="ObjectShortName">compare</obj_property>
+   </wvobject>
+</wave_config>
