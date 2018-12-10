@@ -45,7 +45,7 @@ module tb_distance(
         clock = 0;
         reset = 0;
         reed = 0;
-        circ = 200;
+        circ = 255;
     end
     
     always #(CLOCKPERIOD/2) clock =  ~clock;

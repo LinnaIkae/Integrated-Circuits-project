@@ -3,54 +3,65 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="tb_distance_behav.wdb" id="1">
+      <db_ref path="tb_timing_behav.wdb" id="1">
          <top_modules>
             <top_module name="glbl" />
-            <top_module name="tb_distance" />
+            <top_module name="tb_timing" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="8970195402298fs"></ZoomStartTime>
-      <ZoomEndTime time="10259960919541fs"></ZoomEndTime>
-      <Cursor1Time time="10045000000000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="20000000000001fs"></ZoomEndTime>
+      <Cursor1Time time="3190883000000fs"></Cursor1Time>
    </zoom_setting>
-   <WVObjectSize size="9" />
-   <wvobject type="logic" fp_name="/tb_distance/clock">
+   <WVObjectSize size="11" />
+   <wvobject type="logic" fp_name="/tb_timing/DUT/clock">
       <obj_property name="ElementShortName">clock</obj_property>
       <obj_property name="ObjectShortName">clock</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_distance/reset">
+   <wvobject type="logic" fp_name="/tb_timing/DUT/reset">
       <obj_property name="ElementShortName">reset</obj_property>
       <obj_property name="ObjectShortName">reset</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_distance/reed">
-      <obj_property name="ElementShortName">reed</obj_property>
-      <obj_property name="ObjectShortName">reed</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_distance/circ">
-      <obj_property name="ElementShortName">circ[7:0]</obj_property>
-      <obj_property name="ObjectShortName">circ[7:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_distance/distance">
-      <obj_property name="ElementShortName">distance[13:0]</obj_property>
-      <obj_property name="ObjectShortName">distance[13:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_distance/CLOCKPERIOD">
-      <obj_property name="ElementShortName">CLOCKPERIOD[31:0]</obj_property>
-      <obj_property name="ObjectShortName">CLOCKPERIOD[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_distance/DUT/circ_cnt_r">
-      <obj_property name="ElementShortName">circ_cnt_r[13:0]</obj_property>
-      <obj_property name="ObjectShortName">circ_cnt_r[13:0]</obj_property>
+   <wvobject type="array" fp_name="/tb_timing/DUT/half_sec_r">
+      <obj_property name="ElementShortName">half_sec_r[6:0]</obj_property>
+      <obj_property name="ObjectShortName">half_sec_r[6:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_distance/DUT/distance_r">
-      <obj_property name="ElementShortName">distance_r[13:0]</obj_property>
-      <obj_property name="ObjectShortName">distance_r[13:0]</obj_property>
+   <wvobject type="array" fp_name="/tb_timing/DUT/HMS_time">
+      <obj_property name="ElementShortName">HMS_time[19:0]</obj_property>
+      <obj_property name="ObjectShortName">HMS_time[19:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_distance/DUT/compare">
-      <obj_property name="ElementShortName">compare</obj_property>
-      <obj_property name="ObjectShortName">compare</obj_property>
+   <wvobject type="array" fp_name="/tb_timing/DUT/half_sec_cum">
+      <obj_property name="ElementShortName">half_sec_cum[18:0]</obj_property>
+      <obj_property name="ObjectShortName">half_sec_cum[18:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_timing/DUT/half_sec_pulse">
+      <obj_property name="ElementShortName">half_sec_pulse</obj_property>
+      <obj_property name="ObjectShortName">half_sec_pulse</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_timing/DUT/half_sec_cum_r">
+      <obj_property name="ElementShortName">half_sec_cum_r[18:0]</obj_property>
+      <obj_property name="ObjectShortName">half_sec_cum_r[18:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_timing/DUT/half_sec_pulse_r">
+      <obj_property name="ElementShortName">half_sec_pulse_r</obj_property>
+      <obj_property name="ObjectShortName">half_sec_pulse_r</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_timing/DUT/cycles_r">
+      <obj_property name="ElementShortName">cycles_r[9:0]</obj_property>
+      <obj_property name="ObjectShortName">cycles_r[9:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_timing/DUT/min_r">
+      <obj_property name="ElementShortName">min_r[5:0]</obj_property>
+      <obj_property name="ObjectShortName">min_r[5:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_timing/DUT/hrs_r">
+      <obj_property name="ElementShortName">hrs_r[6:0]</obj_property>
+      <obj_property name="ObjectShortName">hrs_r[6:0]</obj_property>
    </wvobject>
 </wave_config>
