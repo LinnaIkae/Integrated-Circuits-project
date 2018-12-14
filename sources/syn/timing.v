@@ -1,23 +1,4 @@
 `timescale 1us/10ns
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 12/09/2018 07:12:30 PM
-// Design Name: 
-// Module Name: timing
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
 
 module timing(
@@ -39,6 +20,7 @@ module timing(
     reg sec_pulse_r;
     reg sec_pulse_done_r;
     
+    wire[5:0] secs;
     wire cycles_at_lim;
     assign cycles_at_lim = (cycles_r == 1023)? 1: 0;
     
@@ -61,7 +43,7 @@ module timing(
         half_sec_pulse_r <= 0;
         sec_pulse_r <= 0;
         
-        if (reset == 1) begin
+        if (reset == 1 || (min_r == 59 && hrs_r == 99)) begin
             half_sec_r <= 0;
             half_sec_cum_r <= 0;
             min_r <= 0;
@@ -76,20 +58,22 @@ module timing(
                 sec_pulse_r <= 1;
             end
             sec_pulse_done_r <= ~sec_pulse_done_r;
+            
+            if (half_sec_r == 119) begin
+                min_r <= min_r + 1;
+                half_sec_r <= 0;
+                
+                if (min_r == 59) begin
+                    hrs_r <= hrs_r + 1;
+                    min_r  <= 0;
+                end
+            end
         end
-        if (half_sec_r == 119) begin
-            min_r <= min_r + 1;
-            half_sec_r <= 0;
-        end
-        if (min_r == 59) begin
-            hrs_r <= hrs_r + 1;
-            min_r  <= 0;
-        end
-        
     end: count
 
     assign half_sec_pulse = half_sec_pulse_r;
     assign half_sec_cum = half_sec_cum_r;
-    assign HMS_time = {hrs_r, min_r, (half_sec_r >> 1)};
+    assign secs = half_sec_r >> 1;
+    assign HMS_time = {hrs_r, min_r, secs[5:0]};
     assign sec_pulse = sec_pulse_r;
 endmodule

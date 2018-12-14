@@ -3,65 +3,255 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="tb_timing_behav.wdb" id="1">
+      <db_ref path="tb_dual2ascii_behav.wdb" id="1">
          <top_modules>
             <top_module name="glbl" />
-            <top_module name="tb_timing" />
+            <top_module name="tb_dual2ascii" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="20000000000001fs"></ZoomEndTime>
-      <Cursor1Time time="3190883000000fs"></Cursor1Time>
+      <ZoomStartTime time="82888260000fs"></ZoomStartTime>
+      <ZoomEndTime time="462888260001fs"></ZoomEndTime>
+      <Cursor1Time time="309000000000fs"></Cursor1Time>
    </zoom_setting>
-   <WVObjectSize size="11" />
-   <wvobject type="logic" fp_name="/tb_timing/DUT/clock">
+   <WVObjectSize size="51" />
+   <wvobject type="logic" fp_name="/tb_dual2ascii/clock">
       <obj_property name="ElementShortName">clock</obj_property>
       <obj_property name="ObjectShortName">clock</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_timing/DUT/reset">
+   <wvobject type="logic" fp_name="/tb_dual2ascii/reset">
       <obj_property name="ElementShortName">reset</obj_property>
       <obj_property name="ObjectShortName">reset</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_timing/DUT/half_sec_r">
-      <obj_property name="ElementShortName">half_sec_r[6:0]</obj_property>
-      <obj_property name="ObjectShortName">half_sec_r[6:0]</obj_property>
+   <wvobject type="array" fp_name="/tb_dual2ascii/max_speed">
+      <obj_property name="ElementShortName">max_speed[6:0]</obj_property>
+      <obj_property name="ObjectShortName">max_speed[6:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_timing/DUT/HMS_time">
-      <obj_property name="ElementShortName">HMS_time[19:0]</obj_property>
-      <obj_property name="ObjectShortName">HMS_time[19:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_timing/DUT/half_sec_cum">
-      <obj_property name="ElementShortName">half_sec_cum[18:0]</obj_property>
-      <obj_property name="ObjectShortName">half_sec_cum[18:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_timing/DUT/half_sec_pulse">
-      <obj_property name="ElementShortName">half_sec_pulse</obj_property>
-      <obj_property name="ObjectShortName">half_sec_pulse</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_timing/DUT/half_sec_cum_r">
-      <obj_property name="ElementShortName">half_sec_cum_r[18:0]</obj_property>
-      <obj_property name="ObjectShortName">half_sec_cum_r[18:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_timing/DUT/half_sec_pulse_r">
-      <obj_property name="ElementShortName">half_sec_pulse_r</obj_property>
-      <obj_property name="ObjectShortName">half_sec_pulse_r</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_timing/DUT/cycles_r">
-      <obj_property name="ElementShortName">cycles_r[9:0]</obj_property>
-      <obj_property name="ObjectShortName">cycles_r[9:0]</obj_property>
+   <wvobject type="array" fp_name="/tb_dual2ascii/speed">
+      <obj_property name="ElementShortName">speed[6:0]</obj_property>
+      <obj_property name="ObjectShortName">speed[6:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_timing/DUT/min_r">
-      <obj_property name="ElementShortName">min_r[5:0]</obj_property>
-      <obj_property name="ObjectShortName">min_r[5:0]</obj_property>
+   <wvobject type="array" fp_name="/tb_dual2ascii/distance">
+      <obj_property name="ElementShortName">distance[13:0]</obj_property>
+      <obj_property name="ObjectShortName">distance[13:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_timing/DUT/hrs_r">
-      <obj_property name="ElementShortName">hrs_r[6:0]</obj_property>
-      <obj_property name="ObjectShortName">hrs_r[6:0]</obj_property>
+   <wvobject type="array" fp_name="/tb_dual2ascii/avg_speed">
+      <obj_property name="ElementShortName">avg_speed[9:0]</obj_property>
+      <obj_property name="ObjectShortName">avg_speed[9:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/hours">
+      <obj_property name="ElementShortName">hours[6:0]</obj_property>
+      <obj_property name="ObjectShortName">hours[6:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/minutes">
+      <obj_property name="ElementShortName">minutes[5:0]</obj_property>
+      <obj_property name="ObjectShortName">minutes[5:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/seconds">
+      <obj_property name="ElementShortName">seconds[5:0]</obj_property>
+      <obj_property name="ObjectShortName">seconds[5:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_dual2ascii/AVS">
+      <obj_property name="ElementShortName">AVS</obj_property>
+      <obj_property name="ObjectShortName">AVS</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_dual2ascii/DAY">
+      <obj_property name="ElementShortName">DAY</obj_property>
+      <obj_property name="ObjectShortName">DAY</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_dual2ascii/MAX">
+      <obj_property name="ElementShortName">MAX</obj_property>
+      <obj_property name="ObjectShortName">MAX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_dual2ascii/TIM">
+      <obj_property name="ElementShortName">TIM</obj_property>
+      <obj_property name="ObjectShortName">TIM</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_dual2ascii/start">
+      <obj_property name="ElementShortName">start</obj_property>
+      <obj_property name="ObjectShortName">start</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/lower1000">
+      <obj_property name="ElementShortName">lower1000[7:0]</obj_property>
+      <obj_property name="ObjectShortName">lower1000[7:0]</obj_property>
+      <obj_property name="Radix">ASCIIRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/lower0100">
+      <obj_property name="ElementShortName">lower0100[7:0]</obj_property>
+      <obj_property name="ObjectShortName">lower0100[7:0]</obj_property>
+      <obj_property name="Radix">ASCIIRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/lower0010">
+      <obj_property name="ElementShortName">lower0010[7:0]</obj_property>
+      <obj_property name="ObjectShortName">lower0010[7:0]</obj_property>
+      <obj_property name="Radix">ASCIIRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/lower0001">
+      <obj_property name="ElementShortName">lower0001[7:0]</obj_property>
+      <obj_property name="ObjectShortName">lower0001[7:0]</obj_property>
+      <obj_property name="Radix">ASCIIRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/upper10">
+      <obj_property name="ElementShortName">upper10[7:0]</obj_property>
+      <obj_property name="ObjectShortName">upper10[7:0]</obj_property>
+      <obj_property name="Radix">ASCIIRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/upper01">
+      <obj_property name="ElementShortName">upper01[7:0]</obj_property>
+      <obj_property name="ObjectShortName">upper01[7:0]</obj_property>
+      <obj_property name="Radix">ASCIIRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/CLOCKPERIOD">
+      <obj_property name="ElementShortName">CLOCKPERIOD[31:0]</obj_property>
+      <obj_property name="ObjectShortName">CLOCKPERIOD[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_dual2ascii/DUT/start_s2bcd">
+      <obj_property name="ElementShortName">start_s2bcd</obj_property>
+      <obj_property name="ObjectShortName">start_s2bcd</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_dual2ascii/DUT/valid_out">
+      <obj_property name="ElementShortName">valid_out</obj_property>
+      <obj_property name="ObjectShortName">valid_out</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider93" type="divider">
+      <obj_property name="label">SPEEEED</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_dual2ascii/DUT/upper_ascii_valid">
+      <obj_property name="ElementShortName">upper_ascii_valid</obj_property>
+      <obj_property name="ObjectShortName">upper_ascii_valid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_dual2ascii/DUT/lower_ascii_valid">
+      <obj_property name="ElementShortName">lower_ascii_valid</obj_property>
+      <obj_property name="ObjectShortName">lower_ascii_valid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_dual2ascii/DUT/speed2bcd/start">
+      <obj_property name="ElementShortName">start</obj_property>
+      <obj_property name="ObjectShortName">start</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/DUT/speed2bcd/dual">
+      <obj_property name="ElementShortName">dual[6:0]</obj_property>
+      <obj_property name="ObjectShortName">dual[6:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_dual2ascii/DUT/speed2bcd/finish">
+      <obj_property name="ElementShortName">finish</obj_property>
+      <obj_property name="ObjectShortName">finish</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/DUT/speed2bcd/bcd">
+      <obj_property name="ElementShortName">bcd[7:0]</obj_property>
+      <obj_property name="ObjectShortName">bcd[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/DUT/speed2bcd/k">
+      <obj_property name="ElementShortName">k[31:0]</obj_property>
+      <obj_property name="ObjectShortName">k[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/DUT/speed2bcd/l">
+      <obj_property name="ElementShortName">l[31:0]</obj_property>
+      <obj_property name="ObjectShortName">l[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/DUT/speed2bcd/dual_int">
+      <obj_property name="ElementShortName">dual_int[6:0]</obj_property>
+      <obj_property name="ObjectShortName">dual_int[6:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/DUT/speed2bcd/bcdshift_tmp">
+      <obj_property name="ElementShortName">bcdshift_tmp[3:0]</obj_property>
+      <obj_property name="ObjectShortName">bcdshift_tmp[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/DUT/speed2bcd/bcd_int">
+      <obj_property name="ElementShortName">bcd_int[7:0]</obj_property>
+      <obj_property name="ObjectShortName">bcd_int[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/DUT/speed2bcd/dualwidth">
+      <obj_property name="ElementShortName">dualwidth[31:0]</obj_property>
+      <obj_property name="ObjectShortName">dualwidth[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/DUT/speed2bcd/bcdwidth">
+      <obj_property name="ElementShortName">bcdwidth[31:0]</obj_property>
+      <obj_property name="ObjectShortName">bcdwidth[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/DUT/speed2bcd/bcddigit">
+      <obj_property name="ElementShortName">bcddigit[31:0]</obj_property>
+      <obj_property name="ObjectShortName">bcddigit[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider95" type="divider">
+      <obj_property name="label">OTHERRRR</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_dual2ascii/DUT/lower2bcd/start">
+      <obj_property name="ElementShortName">start</obj_property>
+      <obj_property name="ObjectShortName">start</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/DUT/lower2bcd/dual">
+      <obj_property name="ElementShortName">dual[13:0]</obj_property>
+      <obj_property name="ObjectShortName">dual[13:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_dual2ascii/DUT/lower2bcd/finish">
+      <obj_property name="ElementShortName">finish</obj_property>
+      <obj_property name="ObjectShortName">finish</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/DUT/lower2bcd/bcd">
+      <obj_property name="ElementShortName">bcd[15:0]</obj_property>
+      <obj_property name="ObjectShortName">bcd[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/DUT/lower2bcd/k">
+      <obj_property name="ElementShortName">k[31:0]</obj_property>
+      <obj_property name="ObjectShortName">k[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/DUT/lower2bcd/l">
+      <obj_property name="ElementShortName">l[31:0]</obj_property>
+      <obj_property name="ObjectShortName">l[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/DUT/lower2bcd/dual_int">
+      <obj_property name="ElementShortName">dual_int[13:0]</obj_property>
+      <obj_property name="ObjectShortName">dual_int[13:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/DUT/lower2bcd/bcdshift_tmp">
+      <obj_property name="ElementShortName">bcdshift_tmp[3:0]</obj_property>
+      <obj_property name="ObjectShortName">bcdshift_tmp[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/DUT/lower2bcd/bcd_int">
+      <obj_property name="ElementShortName">bcd_int[15:0]</obj_property>
+      <obj_property name="ObjectShortName">bcd_int[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/DUT/lower2bcd/dualwidth">
+      <obj_property name="ElementShortName">dualwidth[31:0]</obj_property>
+      <obj_property name="ObjectShortName">dualwidth[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/DUT/lower2bcd/bcdwidth">
+      <obj_property name="ElementShortName">bcdwidth[31:0]</obj_property>
+      <obj_property name="ObjectShortName">bcdwidth[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dual2ascii/DUT/lower2bcd/bcddigit">
+      <obj_property name="ElementShortName">bcddigit[31:0]</obj_property>
+      <obj_property name="ObjectShortName">bcddigit[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
 </wave_config>
