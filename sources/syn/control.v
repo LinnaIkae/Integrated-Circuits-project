@@ -39,7 +39,25 @@ module control(
     parameter s_TIM = 5'b01000;
     parameter s_MAX = 5'b10000;
     
+    reg d2a_start;
+    reg mode_r;
+    wire d2a_valid;
+    
+    wire[7:0] lower0001_b; 
+    wire[7:0] lower0010_b; 
+    wire[7:0] lower0100_b; 
+    wire[7:0] lower1000_b; 
+    wire[7:0] upper01_b;   
+    wire[7:0] upper10_b;   
+    
+    
     reg [4:0] state_r = s_RESET;
+    
+    wire high_speed;
+    
+    assign high_speed = (speed > 65);
+    
+    reg half_sec_toggle;
     
     always @(posedge clock)
     begin: FSM
@@ -60,50 +78,124 @@ module control(
                   state_r <= s_AVS;
                   end
                DAY <= 1;
+               if(high_speed && half_sec_toggle) begin
+                  AVS <= 1;
+                  MAX <= 1;
+                  TIM <= 1;
+               end
             end
             s_AVS : begin
-               if (mode) begin
-                  state_r <= s_TIM;
-                  end
-               AVS <= 1;
+                if (mode) begin
+                    state_r <= s_TIM;
+                    end
+                AVS <= 1;
+                if(high_speed && half_sec_toggle) begin
+                    TIM <= 1;
+                    MAX <= 1;
+                    DAY <= 1;
+                end
             end
             s_TIM : begin
                if (mode) begin
                   state_r <= s_MAX;
                   end
                TIM <= 1;
+               if(high_speed && half_sec_toggle) begin
+                   AVS <= 1;
+                   MAX <= 1;
+                   DAY <= 1;
+               end
             end
             s_MAX : begin
                if (mode) begin
                   state_r <= s_DAY;
                   end
                MAX <= 1;
+               if(high_speed && half_sec_toggle) begin
+                   AVS <= 1;
+                   TIM <= 1;
+                   DAY <= 1;
+               end
             end
          endcase
     end: FSM
     
+    always @(posedge clock) begin
+        if(reset) begin
+            half_sec_toggle <= 0;
+        end
+        if(half_sec_pulse) begin
+            half_sec_toggle = ~half_sec_toggle;
+        end
+    end
+    
     always @(posedge clock)
     begin: display_update
-        if(sec_pulse || mode) begin
-                        //start_conversion <= 1;
+    
+        if(reset) begin
+            lower0001 <= 0;
+            lower0010 <= 0;
+            lower0100 <= 0;
+            lower1000 <= 0;
+            upper01   <= 0;
+            upper10   <= 0;
+        end
+        
+        d2a_start <= 0;
+        mode_r <= mode;
+        
+        if(sec_pulse || mode_r) begin
+            point <= 0;
+            col <= 0;
+            d2a_start <= 1;
             case(state_r)
                 s_DAY:begin
+                    point <= 1;
                 end
                 s_AVS:begin
-                                        
+                    point <= 1;         
                 end
                 s_TIM:begin
-                                                        
+                    col <= ~col;                                     
                 end
-                s_MAX:begin
-                                                                        
+                s_MAX:begin                                       
                 end
             endcase
         end
-    
+        else if(d2a_valid) begin
+        //clocking encoding data in
+            lower0001 <= lower0001_b; 
+            lower0010 <= lower0010_b; 
+            lower0100 <= lower0100_b; 
+            lower1000 <= lower1000_b; 
+            upper01   <= upper01_b;   
+            upper10   <= upper10_b;
+        end
     end: display_update
     
-                            
+    dual2ascii d2a_inst(
+        .clock      (clock),     
+        .reset      (reset),     
+        .max_speed  (max_speed), 
+        .speed      (speed),     
+        .distance   (distance),  
+        .avg_speed  (avg_speed), 
+        .hours      (hours),     
+        .minutes    (minutes),   
+        .seconds    (seconds),   
+        .AVS        (AVS),       
+        .DAY        (DAY),       
+        .MAX        (MAX),       
+        .TIM        (TIM),       
+        .start      (d2a_start),
+        .lower0001  (lower0001_b),  
+        .lower0010  (lower0010_b),  
+        .lower0100  (lower0100_b),  
+        .lower1000  (lower1000_b),  
+        .upper01    (upper01_b),    
+        .upper10    (upper10_b),
+        .valid_out  (d2a_valid)
+    );                        
                                 
                                 
 endmodule

@@ -38,7 +38,7 @@ module tb_dual2ascii(
         reset = 1;   
         max_speed = 50;
         speed = 69;    
-        distance = 920;
+        distance = 1920;
         avg_speed = 33;
         hours = 0;
         minutes = 28;  

@@ -1,5 +1,11 @@
 `timescale 1us/10ns
 
+/*  Converts the dual-encoded input signals first to bcd and then to ASCII. 
+    Uses just two dual2bcd modules for all conversions.
+    
+    For converting the time singals to ASCII, the dual2bcd module
+    is shared between the smaller and bigger time increment.
+   */
 
 module dual2ascii(
     input wire      clock,
@@ -25,11 +31,9 @@ module dual2ascii(
     output wire [7:0] upper01,
     output wire [7:0] upper10,
     
-    output reg valid_out
+    output wire valid_out
     );
     
-    wire[6:0] time_big;
-    wire[6:0] time_small;
     
     reg upper_ascii_valid;
     reg lower_ascii_valid;
@@ -50,8 +54,12 @@ module dual2ascii(
     wire[3:0] bcd_L0100;
     wire[3:0] bcd_L1000;
 
+    wire[6:0] time_big;
+    wire[6:0] time_small;
     reg[7:0] time_bcd_small;
     reg[7:0] time_bcd_big;
+    reg TIM_phase1;
+    
     assign start_s2bcd = start;
     assign bcd_U01 = speed_bcd[3:0];
     assign bcd_U10 = speed_bcd[7:4];
@@ -63,7 +71,8 @@ module dual2ascii(
     assign bcd_L0010 = (TIM == 0)? lower_bcd[7:4] : time_bcd_small[7:4];
     assign bcd_L0100 = (TIM == 0)? lower_bcd[11:8]: time_bcd_big[3:0];
     assign bcd_L1000 = (TIM == 0)? lower_bcd[15:12]:time_bcd_big[7:4];
-    reg TIM_phase1;
+    
+    assign valid_out = upper_ascii_valid && lower_ascii_valid;
     always @(posedge clock)
     begin
         start_L2bcd <= 0;
@@ -97,18 +106,15 @@ module dual2ascii(
                 TIM_phase1 <= 0;
                 lower_dual <= time_small;
                 start_L2bcd <= 1;
-            end else
+            end else begin
                 lower_ascii_valid <= 1;
                 time_bcd_small <= lower_bcd;
+            end
         end
         
         if(start) begin
-            valid_out <= 0;
             upper_ascii_valid <= 0;
             lower_ascii_valid <= 0;
-        end
-        else if(upper_ascii_valid && lower_ascii_valid) begin
-            valid_out <= 1;
         end
     end
     
