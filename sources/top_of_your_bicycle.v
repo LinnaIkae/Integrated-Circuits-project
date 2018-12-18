@@ -22,8 +22,22 @@ module TOP_OF_YOUR_BICYCLE (
 );
 
 
-// place your code here
+distance distance_inst(
+    .clock          (clock),
+    .reset          (reset),
+    .reed           (reed),
+    .circ           (circ),
+    .distance       (distance)
+);
 
+timing timing_inst(
+    .clock          (clock),
+    .reset          (reset),
+    .HMS_time       (HMS_time),
+    .sec_accum      (sec_accum),
+    .sec_pulse      (sec_pulse),
+    .half_sec_pulse (half_sec_pulse)
+);
 
 
 endmodule
