@@ -6,14 +6,16 @@ module timing(
     input wire reset,
     
     output wire[19:0] HMS_time, //hours, minutes, seconds
-    output wire[18:0] sec_accum,
+    output wire[12:0] sec_accum,
+    output wire[12:0] min_accum,
     output wire half_sec_pulse,
     output wire sec_pulse
     );
     
     reg[9:0] cycles_r;
     reg[6:0] half_sec_r;
-    reg[18:0] sec_accum_r;
+    reg[12:0] sec_accum_r;
+    reg[12:0] min_accum_r;
     reg[5:0] min_r;
     reg[6:0] hrs_r;
     reg half_sec_pulse_r;
@@ -47,6 +49,7 @@ module timing(
             half_sec_r <= 0;
             sec_accum_r <= 0;
             min_r <= 0;
+            min_accum_r <= 0;
             hrs_r <= 0;
             sec_pulse_done_r <= 0;
         end
@@ -61,6 +64,7 @@ module timing(
             
             if (half_sec_r == 119) begin
                 min_r <= min_r + 1;
+                min_accum_r <= min_accum_r + 1;
                 half_sec_r <= 0;
                 
                 if (min_r == 59) begin
@@ -73,6 +77,7 @@ module timing(
 
     assign half_sec_pulse = half_sec_pulse_r;
     assign sec_accum = sec_accum_r;
+    assign min_accum = min_accum_r;
     assign secs = half_sec_r >> 1;
     assign HMS_time = {hrs_r, min_r, secs[5:0]};
     assign sec_pulse = sec_pulse_r;
