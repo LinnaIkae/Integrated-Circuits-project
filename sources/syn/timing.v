@@ -79,6 +79,6 @@ module timing(
     assign sec_accum = sec_accum_r;
     assign min_accum = min_accum_r;
     assign secs = half_sec_r >> 1;
-    assign HMS_time = {hrs_r, min_r, secs[5:0]};
+    assign HMS_time = {hrs_r, min_r, secs};
     assign sec_pulse = sec_pulse_r;
 endmodule

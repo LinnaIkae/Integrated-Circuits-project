@@ -42,3 +42,7 @@
 !*.elf
 !*.bmm
 !*.xmp
+
+####
+#The ods file
+!*.ods

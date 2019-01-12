@@ -50,6 +50,7 @@ module tb_dual2ascii(
         start = 0;
           
         repeat(CYCLES) @(posedge clock);
+        DAY = 1;
         reset = 0;
         
         @(posedge clock);
@@ -60,6 +61,7 @@ module tb_dual2ascii(
         repeat(CYCLES) @(posedge clock);
         
         start = 1;
+        DAY = 0;
         AVS = 1;
         @(posedge clock);
         start = 0;
