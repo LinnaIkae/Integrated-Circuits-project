@@ -58,6 +58,8 @@ module tb_Max_speed;
             ok = (out == Control) ? 1 : 0 ;
            
         end
+        in = 200;
+        #100
         r=1;
         #10;
         r=0;
