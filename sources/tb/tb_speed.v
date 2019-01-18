@@ -21,6 +21,10 @@
 module tb_speed;
 
 
+    // A testbench for module should only test the working of that module IMO.
+    // Here the result depends on both divider and speed module so we cannot
+    // test speed module in isolation
+
     parameter WIDTH = 16; //speed width is set 12 in speed module
     parameter WIDTH_speed = 12;
     //global
