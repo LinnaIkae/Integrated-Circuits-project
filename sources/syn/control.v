@@ -5,16 +5,15 @@ module control(
     input wire clock,
     input wire reset,
     input wire mode,
-    
     input wire half_sec_pulse,
     input wire sec_pulse,
-    
+
     input wire[6:0]  max_speed,
     input wire[6:0]  speed,
     input wire[13:0] distance,
     input wire[9:0]  avg_speed,
     input wire[18:0] HMS_time,
-    
+
     output reg AVS,
     output reg DAY,
     output reg MAX,
