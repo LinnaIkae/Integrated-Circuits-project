@@ -84,36 +84,36 @@ timing timing_inst(
     .half_sec_pulse (half_sec_pulse)
 );
 
-max_speed #(MAX_SPEED_WIDTH) max_speed_inst(
+Max_speed #(MAX_SPEED_WIDTH) max_speed_inst(
     .speed          (speed),
     .clk            (clock), 
     .r              (reset),
     .out            (max_speed)
-)
+);
 
-speed #(SPEED_IN_WIDTH, SPEED_OUT_WIDTH) speed_inst(
-    .clk            (clock),
-    .r              (reset),
-    .en             (speed_enable),
-    .reed           (reed),
-    .get            (speed_get),
-    .circ           (circ),
-    .speed          (speed),
-    .dividerbus     (dividerbus),
-    .dividerres     (dividerres)
-)
+//Speed #(SPEED_IN_WIDTH, SPEED_OUT_WIDTH) speed_inst(
+//    .clk            (clock),
+//    .r              (reset),
+//    .en             (speed_enable),
+//    .reed           (reed),
+//    .get            (speed_get),
+//    .circ           (circ),
+//    .speed          (speed),
+//    .dividerbus     (dividerbus),
+//    .dividerres     (dividerres)
+//);
 
-Average_speed #(AVG_SPEED_IN_WIDTH, AVG_SPEED_OUT_WIDTH) avg_speed_inst(
-    .clk            (clock),
-    .r              (reset),
-    .en             (avg_speed_enable),
-    .get            (avg_speed_get),
-    .avg_speed      (avg_speed),
-    .trip_time_sec  (sec_accum),
-    .trip_time_min  (min_accum)
-    .trip_distnance (distance),
-    .dividerbus     (dividerbus),
-    .dividerres     (dividerres),
-)
+//Average_speed #(AVG_SPEED_IN_WIDTH, AVG_SPEED_OUT_WIDTH) avg_speed_inst(
+//    .clk            (clock),
+//    .r              (reset),
+//    .en             (avg_speed_enable),
+//    .get            (avg_speed_get),
+//    .avg_speed      (avg_speed),
+//    .trip_time_sec  (sec_accum),
+//    .trip_time_min  (min_accum),
+//    .trip_distance  (distance),
+//    .dividerbus     (dividerbus),
+//    .dividerres     (dividerres) //you get a really strange error if you have a comma here.
+//);
 
 endmodule
