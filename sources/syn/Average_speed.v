@@ -29,7 +29,7 @@ module Average_speed( clk, en, r, get, trip_time, trip_distance, out, dividerbus
     parameter CONST = 3600;
     
     //IO
-    input clk, en, r, get;
+    input wire clk, en, r, get;
     input [WIDTH_div-1:0] trip_time;
     input [WIDTH_div-1:0] trip_distance;
     output reg [WIDTH_out-1:0] out;

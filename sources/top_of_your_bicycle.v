@@ -1,5 +1,5 @@
 `timescale 1us/10ns
-
+`default_nettype none
 
 module TOP_OF_YOUR_BICYCLE (
   input wire clock,
@@ -27,6 +27,7 @@ parameter SPEED_IN_WIDTH = 16;
 parameter SPEED_OUT_WIDTH = 12;
 parameter AVG_SPEED_IN_WIDTH = 16;
 parameter AVG_SPEED_OUT_WIDTH = 12;
+parameter DIV_WIDTH = 12;
 
 wire half_sec_pulse;
 wire sec_pulse;
@@ -35,10 +36,11 @@ wire [SPEED_OUT_WIDTH - 1:0] speed;
 wire [13:0] distance;
 wire [AVG_SPEED_OUT_WIDTH-1:0] avg_speed;
 wire [18:0] HMS_time;
+wire[12:0] sec_accum;
+wire[12:0] min_accum;
 
-wire speed_enable, speed_get;
-
-wire avg_speed_enable, avg_speed_get;
+wire speed_enable, speed_get, speed_valid, speed_start;
+wire avg_speed_enable, avg_speed_get, avg_speed_valid, avg_speed_start;
 
 control control_inst(
     .clock           (clock),
@@ -51,6 +53,9 @@ control control_inst(
     .distance        (distance),
     .avg_speed       (avg_speed),
     .HMS_time        (HMS_time),
+    .speed_valid     (speed_valid),
+    .avg_speed_valid (avg_speed_valid),
+    
     .AVS             (AVS),
     .DAY             (DAY),
     .MAX             (MAX),
@@ -62,7 +67,10 @@ control control_inst(
     .lower0100       (lower0100),
     .lower1000       (lower1000),
     .upper01         (upper01),
-    .upper10         (upper10)
+    .upper10         (upper10),
+    
+    .speed_start      (speed_start),
+    .avg_speed_start  (avg_speed_start)
 );
 
 
@@ -99,8 +107,11 @@ Max_speed #(MAX_SPEED_WIDTH) max_speed_inst(
 //    .get            (speed_get),
 //    .circ           (circ),
 //    .speed          (speed),
-//    .dividerbus     (dividerbus),
-//    .dividerres     (dividerres)
+//    .dividerbus     (dividerbus_speed),
+//    .dividercontrol (dividercontrol),
+//    .dividerres     (dividerres_speed),
+//    .start          (speed_start),
+//    .valid          (speed_valid)
 //);
 
 //Average_speed #(AVG_SPEED_IN_WIDTH, AVG_SPEED_OUT_WIDTH) avg_speed_inst(
@@ -112,8 +123,24 @@ Max_speed #(MAX_SPEED_WIDTH) max_speed_inst(
 //    .trip_time_sec  (sec_accum),
 //    .trip_time_min  (min_accum),
 //    .trip_distance  (distance),
-//    .dividerbus     (dividerbus),
-//    .dividerres     (dividerres) //you get a really strange error if you have a comma here.
+//    .dividerbus     (dividerbus_avg_speed),
+//    .dividercontrol (dividercontrol),
+//    .dividerres     (dividerres_avg_speed), //you get a really strange error if you have a comma here.
+//    .start          (speed_start),
+//    .valid          (speed_valid)
 //);
+
+//divider #(DIV_WIDTH) div_inst(
+//    .clk            (clock),
+//    .en             (div_enable),
+//    .Take           (div_take),
+//    .Dividend1      (dividend1),
+//    .Dividend2      (dividend2),
+//    .Divisor1       (divisor2),
+//    .Divisor2       (divisor2),
+//    .Res            (div_result),
+//    .Busy           (div_busy),
+//    .Ready          (div_ready)
+//    );
 
 endmodule

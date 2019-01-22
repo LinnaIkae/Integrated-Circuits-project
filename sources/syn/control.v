@@ -1,5 +1,5 @@
 `timescale 1us/10ns
-
+`default_nettype none
 
 module control(
     input wire clock,
@@ -13,7 +13,12 @@ module control(
     input wire[13:0] distance,
     input wire[9:0]  avg_speed,
     input wire[18:0] HMS_time,
-
+    
+    
+    
+    input wire speed_valid,
+    input wire avg_speed_valid,
+    
     output reg AVS,
     output reg DAY,
     output reg MAX,
@@ -25,8 +30,15 @@ module control(
     output reg [7:0] lower0100,
     output reg [7:0] lower1000,
     output reg [7:0] upper01,
-    output reg [7:0] upper10
+    output reg [7:0] upper10,
+    
+    output reg speed_start,
+    output reg avg_speed_start,
+    output reg div_select
+    
     );
+    reg[6:0] speed_r;
+    reg[9:0] avg_speed_r;
     
     wire[6:0] hours = HMS_time[18:12];
     wire[5:0] minutes = HMS_time[11:6];
@@ -128,6 +140,27 @@ module control(
         end
     end
     
+    
+    always @(posedge clock)
+    begin: speed_modules_control_and_data
+        speed_start = 0;
+        avg_speed_start = 0;
+        div_select = 0;
+        if(sec_pulse) begin
+            speed_start = 1;
+            div_select = 0;
+        end
+        if(speed_valid) begin
+            speed_r = speed;
+            div_select = 1;
+            avg_speed_start = 1;
+        end
+        if(avg_speed_valid) begin
+            avg_speed_r = avg_speed;
+            div_select = 0;
+        end
+    end
+    
     always @(posedge clock)
     begin: display_update
     
@@ -176,9 +209,9 @@ module control(
         .clock      (clock),     
         .reset      (reset),     
         .max_speed  (max_speed), 
-        .speed      (speed),     
+        .speed      (speed_r),     
         .distance   (distance),  
-        .avg_speed  (avg_speed), 
+        .avg_speed  (avg_speed_r), 
         .hours      (hours),     
         .minutes    (minutes),   
         .seconds    (seconds),   

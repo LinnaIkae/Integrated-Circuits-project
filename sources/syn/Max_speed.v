@@ -1,4 +1,5 @@
 `timescale 1us / 10ns
+`default_nettype none
 //////////////////////////////////////////////////////////////////////////////////
 // Company: CTU in Prague @ Uni Ulm
 // Engineer: Martin Kostal
@@ -24,7 +25,7 @@ module Max_speed(  clk, r , speed,out
     );
     parameter WIDTH = 12; 
     input [WIDTH-1:0]speed;
-    input clk, r;
+    input wire clk, r;
     output reg [WIDTH-1:0] out = 0;
     
     always @(posedge clk) begin

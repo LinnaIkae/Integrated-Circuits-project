@@ -1,4 +1,5 @@
 `timescale 1ns / 1ps
+`default_nettype none
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -25,8 +26,8 @@ module divider(en, clk,Dividend,Divisor,Res,Busy,Ready, Take);
     //bit width of the divider, design uses 12
     parameter WIDTH = 12;
     //input and output ports.
-    input en, clk;
-    inout Take;
+    input wire en, clk;
+    inout wire Take;
     input [WIDTH-1:0] Dividend;
     input [WIDTH-1:0] Divisor;
     output [WIDTH-1:0] Res;

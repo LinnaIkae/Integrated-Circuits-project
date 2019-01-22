@@ -1,4 +1,5 @@
 `timescale 1us / 10ns
+`default_nettype none
 //////////////////////////////////////////////////////////////////////////////////
 // Company: CTU in Prague @ Uni Ulm
 // Engineer: Martin Kostal
@@ -30,7 +31,7 @@ module Speed(en, clk, reed, circ, start, speed, valid, dividerbus, dividerres, d
     
     
     //IO
-    input en, clk, reed, start;
+    input wire en, clk, reed, start;
     input [7:0] circ;
     output reg [WIDTH_speed-1:0] speed;
     output reg valid = 0;

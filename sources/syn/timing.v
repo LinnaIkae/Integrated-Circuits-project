@@ -1,5 +1,5 @@
 `timescale 1us/10ns
-
+`default_nettype none
 
 module timing(
     input wire clock,
