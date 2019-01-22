@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module divider2(en, clk,Dividend,Divisor,Res,Busy,Ready, Take);
+module divider(en, clk,Dividend,Divisor,Res,Busy,Ready, Take);
 
     //bit width of the divider, design uses 12
     parameter WIDTH = 12;
