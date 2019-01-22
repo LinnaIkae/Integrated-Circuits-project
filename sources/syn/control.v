@@ -171,6 +171,8 @@ module control(
             lower1000 <= 0;
             upper01   <= 0;
             upper10   <= 0;
+            point <= 0;
+            col <= 0;            
         end
         
         d2a_start <= 0;
