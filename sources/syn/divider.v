@@ -1,12 +1,12 @@
-`timescale 1us / 10ns
+`timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: CTU in Prague @ Uni Ulm
-// Engineer: Martin Kostal
+// Company: 
+// Engineer: 
 // 
-// Create Date: 12/08/2018 01:57:51 PM
+// Create Date: 01/22/2019 02:26:26 AM
 // Design Name: 
-// Module Name: divider
-// Project Name: Bike computer
+// Module Name: divider2
+// Project Name: 
 // Target Devices: 
 // Tool Versions: 
 // Description: 
@@ -20,73 +20,106 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module divider(clock, reset, Dividend_spd, Dividend_avg_spd, Divisor_spd, Divisor_avg_spd, In_sel, Res, Valid_out);
+module divider2(en, clk,Dividend,Divisor,Res,Busy,Ready, Take);
 
-    `define SPD 0
-    `define AVG_SPD 1
+    //bit width of the divider, design uses 12
+    parameter WIDTH = 12;
     //input and output ports.
-    input clock;
-    input reset;
-    input [11:0] Dividend_spd;
-    input [11:0] Dividend_avg_spd;
-    input [11:0] Divisor_spd;
-    input [11:0] Divisor_avg_spd;
-    input In_sel; 
-    output [1:0] Res;
-    output reg Valid_out;
+    input en, clk;
+    inout Take;
+    input [WIDTH-1:0] Dividend;
+    input [WIDTH-1:0] Divisor;
+    output [WIDTH-1:0] Res;
+    output reg Busy, Ready;
     
     //internal variables    
-    reg [11:0] Res = 0;
-    
-    
-    
-    always@ (posedge clock)
-    begin
-        if(reset == 1) begin
-            Res = 0;
+    reg [WIDTH-1:0] Res = 0;
+    reg [WIDTH-1:0] a1,b1;
+    reg [WIDTH:0] p1;   
+    integer i, fsm;
+    reg waiting = 0;
+
+    always@ (posedge clk)
+        begin
+        if (en == 1) begin
+        if (waiting == 0) begin 
+        
+        //initialize the variables.
+            if(Busy == 0) begin
+            Busy <= 1;
+            a1 <= Dividend;
+            b1 <= Divisor;
+            p1 <= 0;
+            Ready <= 0;
+            i <= 0;
+            fsm <= 0;
+            end
+            else begin
+         //check division by 0
+            if (b1 == 0) begin
+                Res <= 0;
+                Ready <= 1;
+                Busy <= 0;
+            end
+            else begin
+        
+        //restoring division
+            if (i < WIDTH) begin
+                case (fsm)
+                    0: begin
+                        p1 <= {p1[WIDTH-2:0],a1[WIDTH-1]};
+                        a1[WIDTH-1:1] <= a1[WIDTH-2:0];
+                        fsm <= fsm +1; 
+                    end
+                    
+                    1: begin
+                        p1 = p1-b1;
+                        fsm <= fsm +1;
+                    end
+                    
+                    2: begin
+                        if(p1[WIDTH] == 1)    begin
+                            a1[0] <= 0;
+                            p1 <= p1 + b1;
+                        end
+                        else begin
+                            a1[0] <= 1;
+                        end
+                        fsm <= fsm +1;
+                                            
+                    end
+                    
+                    3: begin
+                        i <= i+1;
+                        fsm <= 0;
+                        
+                    end
+                    
+                 default: b1 <= 0;
+                 endcase
+                
+                
+            
+            end 
+            else begin
+                Res <= a1;
+                Ready <= 1;
+                Busy <= 0;
+                waiting <= 1;      //ready needs more cycles to be recognised             
+            end
+        ///////////
+            
+            end
+            end
+            end else begin
+                    waiting <= 0;
+                 end
         end
         else begin
-            
-        end
-    end
-    
-    
-//    reg [11:0] a1,b1;
-//    reg [12:0] p1;
-//    integer i;
-//    always@ (Dividend or Divisor)
-//    begin
-//        //initialize the variables.
-//        Busy = 1;
-//        a1 = Dividend;
-//        b1 = Divisor;
-//        p1 = 0;
-//        Ready = 0;
-//        //check division by 0
-//        if (b1 == 0) begin
-//            Res = 0;
-//            Ready = 1;
-//            Busy = 0;
-//        end
-//        else begin
+            Busy <= 0;
         
-//        //restoring division
-//            for(i=0;i < WIDTH;i=i+1)    begin 
-//                p1 = {p1[WIDTH-2:0],a1[WIDTH-1]};#1;
-//                a1[WIDTH-1:1] = a1[WIDTH-2:0];#1;
-//                p1 = p1-b1;#1;
-//                if(p1[WIDTH] == 1)    begin
-//                   a1[0] = 0;#1;
-//                   p1 = p1 + b1;#1;
-//                end
-//                else
-//                    a1[0] = 1;#1;
-//                end
-             
-//            Res = a1;
-//            Ready = 1;
-//            Busy = 0;   
-//        end
-//     end 
+         end
+     
+     end 
 
 endmodule
