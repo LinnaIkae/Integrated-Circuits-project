@@ -39,7 +39,7 @@ reg [7:0]   CIRC;
 
 //-------------------------student device under test------
 
- top_of_your_bicycle student_dut (
+ TOP_OF_YOUR_BICYCLE student_dut (
    .clock(CLK),
    .mode(MODE),
    .reed(REED),
