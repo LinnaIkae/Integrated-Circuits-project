@@ -39,8 +39,9 @@ wire [18:0] HMS_time;
 wire[12:0] sec_accum;
 wire[12:0] min_accum;
 
-wire speed_enable, speed_get, speed_valid, speed_start;
+wire speed_enable, speed_valid, speed_start;
 wire avg_speed_enable, avg_speed_get, avg_speed_valid, avg_speed_start;
+wire div_select;
 
 control control_inst(
     .clock           (clock),
@@ -99,41 +100,45 @@ Max_speed #(MAX_SPEED_WIDTH) max_speed_inst(
     .out            (max_speed)
 );
 
-//Speed #(SPEED_IN_WIDTH, SPEED_OUT_WIDTH) speed_inst(
+//Speed #(.WIDTH(SPEED_IN_WIDTH), .WIDTH_speed(SPEED_OUT_WIDTH)) speed_inst(
 //    .clk            (clock),
-//    .r              (reset),
+//    .rst            (reset),
 //    .en             (speed_enable),
 //    .reed           (reed),
-//    .get            (speed_get),
 //    .circ           (circ),
 //    .speed          (speed),
-//    .dividerbus     (dividerbus_speed),
-//    .dividercontrol (dividercontrol),
-//    .dividerres     (dividerres_speed),
+//    .dividend       (dividend1),
+//    .divisor        (divisor1),
+//    .busy           (div_busy),
+//    .ready          (div_ready),
+//    .dividerres     (div_res),
 //    .start          (speed_start),
-//    .valid          (speed_valid)
+//    .valid          (speed_valid),
+//    .select         (div_select)
 //);
 
-//Average_speed #(AVG_SPEED_IN_WIDTH, AVG_SPEED_OUT_WIDTH) avg_speed_inst(
+//Average_speed #(.WIDTH(AVG_SPEED_IN_WIDTH), .WIDTH_speed(AVG_SPEED_OUT_WIDTH) ) avg_speed_inst(
 //    .clk            (clock),
-//    .r              (reset),
+//    .rst            (reset),
 //    .en             (avg_speed_enable),
-//    .get            (avg_speed_get),
+//    .start          (avg_speed_start),
 //    .avg_speed      (avg_speed),
 //    .trip_time_sec  (sec_accum),
 //    .trip_time_min  (min_accum),
 //    .trip_distance  (distance),
-//    .dividerbus     (dividerbus_avg_speed),
-//    .dividercontrol (dividercontrol),
-//    .dividerres     (dividerres_avg_speed), //you get a really strange error if you have a comma here.
-//    .start          (speed_start),
-//    .valid          (speed_valid)
+//    .dividend       (dividend2),
+//    .divisor        (divisor2),
+//    .busy           (div_busy),
+//    .ready          (div_ready),
+//    .dividerres     (div_res),
+//    .valid          (avg_speed_valid),
+//    .select         (div_select)
 //);
 
-//divider #(DIV_WIDTH) div_inst(
+  //divider #(.WIDTH(DIV_WIDTH)) div_inst(
 //    .clk            (clock),
 //    .en             (div_enable),
-//    .Take           (div_take),
+//    .Select         (div_select),
 //    .Dividend1      (dividend1),
 //    .Dividend2      (dividend2),
 //    .Divisor1       (divisor2),
