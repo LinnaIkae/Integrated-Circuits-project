@@ -21,7 +21,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Speed(en, clk, reed, circ, start, speed, valid, dividerbus, dividerres, dividercontrol);
+module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, dividerres, busy, ready, select);
     //add valid output
     
     //parameters of the module
@@ -31,31 +31,37 @@ module Speed(en, clk, reed, circ, start, speed, valid, dividerbus, dividerres, d
     
     
     //IO
-    input wire en, clk, reed, start;
+    input en, rst, clk, reed, start, busy, ready, select;
     input [7:0] circ;
     output reg [WIDTH_speed-1:0] speed;
     output reg valid = 0;
-    output reg[(2*WIDTH-1):0] dividerbus;
+    output reg[WIDTH-1:0] dividend, divisor;
     input [WIDTH-1:0] dividerres;
-    inout [3:0]dividercontrol; //indexes are 1 Busy,0 Ready, 2 master signal to avg_speed, 3 start division
+    //inout [3:0]dividercontrol; //indexes are 1 Busy,0 Ready, 2 master signal to avg_speed, 3 start division
     
     //internal variables
     reg [WIDTH-1:0]cnt = 0; //measures time between REEDS
     reg [WIDTH-1:0]tim = 0; //stores time between REEDS
     reg [1:0]waiting = 0;
     reg [WIDTH+8-1:0]cico = 0; //stores circ*const value as Q16.8
-    wire Busy = dividercontrol[1];
-    wire Ready = dividercontrol[0];
+    wire Busy = busy;//dividercontrol[1];
+    wire Ready = ready;//dividercontrol[0];
     reg Take_div = 0;
-    assign dividercontrol[2] = (Ready) ? Take_div : 'bz;
+    //assign dividercontrol[2] = (Ready) ? Take_div : 'bz;
     reg Start_div = 0;
-    assign dividercontrol[3] = (Take_div) ? Start_div : 'bz;    
+    //assign dividercontrol[3] = (Take_div) ? Start_div : 'bz;    
     
     initial begin
         cico <= circ*CONST;
     end
     always @(posedge clk)
     begin
+        if (rst == 1) begin
+             cico = circ*CONST;
+             cnt = 0;
+             tim = 0;
+        end
+    
         if (en == 1) begin
             cnt <= (reed == 1)? 0 : cnt + 1;
             tim <= (reed == 1)? cnt : tim;
@@ -77,8 +83,8 @@ module Speed(en, clk, reed, circ, start, speed, valid, dividerbus, dividerres, d
             end
         end
         if (waiting == 1 && Busy == 0)begin
-            dividerbus[2*WIDTH-1:WIDTH] <= cico[WIDTH+8-1:8];
-            dividerbus[WIDTH-1:0] <= tim;
+            dividend <= cico[WIDTH+8-1:8];
+            divisor <= tim;
             Start_div <= 1;
             waiting <= 2;
         end
@@ -88,7 +94,7 @@ module Speed(en, clk, reed, circ, start, speed, valid, dividerbus, dividerres, d
         end
                         
         if (waiting == 3 && Ready == 1)begin
-                    speed <= dividerres[WIDTH_speed-1:0];
+                    speed <= (dividerres[WIDTH_speed-1:0]>99) ? 99 : dividerres[WIDTH_speed-1:0]; //detects overflow
                     valid <=1;
                     Start_div <= 0;
                     waiting <= 0;
