@@ -20,54 +20,83 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Average_speed( clk, en, r, get, trip_time, trip_distance, out, dividerbus, dividerres, dividercontrol 
+module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_distance, avg_speed, dividend, divisor, busy, ready, dividerres, valid, select
     );
+    //    .clk            (clock),
+    //    .rst            (reset),
+    //    .en             (avg_speed_enable),
+    //    .start          (avg_speed_start),
+    //    .avg_speed      (avg_speed),
+    //    .trip_time_sec  (sec_accum),
+    //    .trip_time_min  (min_accum),
+    //    .trip_distance  (distance),
+    //    .dividend       (dividend2),
+    //    .divisor        (divisor2),
+    //    .busy           (div_busy),
+    //    .ready          (div_ready),
+    //    .dividerres     (div_res),
+    //    .valid          (avg_speed_valid),
+    //    .select         (div_select)
     
         //parameters of the module
     parameter WIDTH_div = 16;
     parameter WIDTH_out = 12;
-    parameter CONST = 3600;
+    parameter CONST_SEC = 3600;
+    parameter CONST_MIN = 60;
+       
     
     //IO
-    input wire clk, en, r, get;
-    input [WIDTH_div-1:0] trip_time;
+    input clk, en, rst, start;
+    input [12:0] trip_time_sec;
+    input [12:0] trip_time_min;
     input [WIDTH_div-1:0] trip_distance;
-    output reg [WIDTH_out-1:0] out;
-    output reg[(2*WIDTH_div-1):0] dividerbus;
+    output reg [WIDTH_out-1:0] avg_speed; //out
+    output reg valid = 0;
+    output reg[WIDTH_div-1:0] dividend, divisor;
     input [WIDTH_div-1:0] dividerres;
-    inout [1:0]dividercontrol; //indexes are 1 Busy,0 Ready
+    input busy, ready, select; //indexes are 1 Busy,0 Ready
     
     //internal variables
     reg [1:0]waiting = 0;
     reg [WIDTH_div-1:0]A = 0;
-    wire Busy = dividercontrol[1];
-    wire Ready = dividercontrol[0];
+    wire Busy = busy;
+    wire Ready = ready;
     
     always @(posedge clk)
     begin
         if (en == 1) begin
-            A <= (A == 0) ? trip_distance*CONST : A;
-        end
+            A <= (trip_time_sec<6000) ? trip_distance * CONST_SEC : trip_distance * CONST_MIN;
+        end  else  A <= A;
+        
+        if (rst == 1) begin
+                    avg_speed <= 0;
+                end  else  avg_speed <= avg_speed;
         
         //topmodule asks for average  speed
-        if (get == 1) begin
+        if (start == 1) begin
+            valid  <= 0;
         //sends to divider
-            if (Busy == 1)begin
+            if (waiting == 0)begin
                 waiting <= 1;
-            end else begin
-                dividerbus[2*WIDTH_div-1:WIDTH_div] <= A;
-                dividerbus[WIDTH_div-1:0] <= trip_time;
+            end /*else begin
+                dividend <= A;
+                divisor <= (trip_time_sec<6000) ? trip_time_sec : trip_time_min;
                 waiting <= 2;
-            end
+            end*/
         end
-        if (waiting == 1 && Busy == 0)begin
-            dividerbus[2*WIDTH_div-1:WIDTH_div] <= A;
-            dividerbus[WIDTH_div-1:0] <= trip_time;
+        if (waiting == 1 && Busy == 0 )begin
+            dividend <= A;
+            divisor <= (trip_time_sec<6000) ? trip_time_sec : trip_time_min;
             waiting <= 2;
         end
-        if (waiting == 2 && Ready == 1)begin
-                    out <= dividerres[WIDTH_out-1:0];
-                    
+                
+        if (waiting == 2 && Busy == 1)begin
+                    waiting <= 3;
+        end        
+        
+        if (waiting == 3 && Ready == 1)begin
+                    avg_speed <= (dividerres[WIDTH_out-1:0]>7'b1111111) ? 7'b1111111 : dividerres[WIDTH_out-1:0];
+                    valid = 1;
                     waiting <= 0;
                 end
     end
