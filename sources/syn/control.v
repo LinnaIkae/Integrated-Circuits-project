@@ -145,14 +145,14 @@ module control(
     begin: speed_modules_control_and_data
         speed_start = 0;
         avg_speed_start = 0;
-        div_select = 0;
+        div_select = 1;
         if(sec_pulse) begin
-            speed_start = 1;
-            div_select = 0;
+            speed_start = 1; //tells the module to send numbers to the divider
+            div_select = 1; // 1 is speed module and 0 is average speed module input to divider
         end
         if(speed_valid) begin
             speed_r = speed;
-            div_select = 1;
+            div_select = 0;
             avg_speed_start = 1;
         end
         if(avg_speed_valid) begin
