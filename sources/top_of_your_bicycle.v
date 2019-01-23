@@ -117,7 +117,7 @@ Max_speed #(MAX_SPEED_WIDTH) max_speed_inst(
 //    .select         (div_select)
 //);
 
-//Average_speed #(.WIDTH(AVG_SPEED_IN_WIDTH), .WIDTH_speed(AVG_SPEED_OUT_WIDTH) ) avg_speed_inst(
+  //Average_speed #(.WIDTH_div(AVG_SPEED_IN_WIDTH), .WIDTH_out(AVG_SPEED_OUT_WIDTH) ) avg_speed_inst(
 //    .clk            (clock),
 //    .rst            (reset),
 //    .en             (avg_speed_enable),
