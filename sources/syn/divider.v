@@ -6,7 +6,7 @@
 // 
 // Create Date: 01/22/2019 02:26:26 AM
 // Design Name: 
-// Module Name: divider2
+// Module Name: divider
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -21,15 +21,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module divider(en, clk,Dividend,Divisor,Res,Busy,Ready, Take);
+ module divider(en, clk,Dividend1, Dividend2, Divisor1, Divisor2,Res,Busy,Ready, Select);
 
     //bit width of the divider, design uses 12
     parameter WIDTH = 12;
     //input and output ports.
-    input wire en, clk;
-    inout wire Take;
-    input [WIDTH-1:0] Dividend;
-    input [WIDTH-1:0] Divisor;
+    input en, clk;
+    input Select;
+    input [WIDTH-1:0] Dividend1, Dividend2;
+    input [WIDTH-1:0] Divisor1, Divisor2;
     output [WIDTH-1:0] Res;
     output reg Busy, Ready;
     
@@ -48,8 +48,8 @@ module divider(en, clk,Dividend,Divisor,Res,Busy,Ready, Take);
         //initialize the variables.
             if(Busy == 0) begin
             Busy <= 1;
-            a1 <= Dividend;
-            b1 <= Divisor;
+            a1 <= (Select == 1) ? Dividend1 : Dividend2;
+            b1 <= (Select == 1) ? Divisor1 : Divisor2;
             p1 <= 0;
             Ready <= 0;
             i <= 0;
@@ -124,3 +124,4 @@ module divider(en, clk,Dividend,Divisor,Res,Busy,Ready, Take);
      end 
 
 endmodule
+
