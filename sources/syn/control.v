@@ -2,19 +2,22 @@
 `default_nettype none
 
 module control(
+
+    parameter SPEED_WIDTH = 12;
+    parameter MAX_SPEED_WIDTH = 12;
+    parameter AVG_SPEED_WIDTH = 12;
+
     input wire clock,
     input wire reset,
     input wire mode,
     input wire half_sec_pulse,
     input wire sec_pulse,
 
-    input wire[6:0]  max_speed,
-    input wire[6:0]  speed,
+    input wire[MAX_SPEED_WIDTH-1:0]  max_speed,
+    input wire[SPEED_WIDTH-1:0]  speed,
     input wire[13:0] distance,
-    input wire[9:0]  avg_speed,
+    input wire[AVG_SPEED_WIDTH-1:0]  avg_speed,
     input wire[18:0] HMS_time,
-    
-    
     
     input wire speed_valid,
     input wire avg_speed_valid,
@@ -37,8 +40,8 @@ module control(
     output reg div_select
     
     );
-    reg[6:0] speed_r;
-    reg[9:0] avg_speed_r;
+    reg[SPEED_WIDTH-1:0] speed_r;
+    reg[AVG_SPEED_WIDTH-1:0] avg_speed_r;
     
     wire[6:0] hours = HMS_time[18:12];
     wire[5:0] minutes = HMS_time[11:6];
@@ -65,7 +68,6 @@ module control(
     reg [4:0] state_r = s_RESET;
     
     wire high_speed;
-    
     assign high_speed = (speed > 65);
     
     reg half_sec_toggle;

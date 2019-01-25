@@ -43,7 +43,11 @@ wire speed_enable, speed_valid, speed_start;
 wire avg_speed_enable, avg_speed_get, avg_speed_valid, avg_speed_start;
 wire div_select;
 
-control control_inst(
+control#(
+    .SPEED_WIDTH            (SPEED_OUT_WIDTH),
+    .MAX_SPEED_WIDTH        (MAX_SPEED_WIDTH),
+    .AVG_SPEED_OUT_WIDTH    (AVG_SPEED_WIDTH))
+    control_inst(
     .clock           (clock),
     .reset           (reset),
     .mode            (mode),
@@ -100,7 +104,10 @@ Max_speed #(MAX_SPEED_WIDTH) max_speed_inst(
     .out            (max_speed)
 );
 
-Speed #(.WIDTH(SPEED_IN_WIDTH), .WIDTH_speed(SPEED_OUT_WIDTH)) speed_inst(
+Speed #(
+    .WIDTH          (SPEED_IN_WIDTH), 
+    .WIDTH_speed    (SPEED_OUT_WIDTH)) 
+    speed_inst(
     .clk            (clock),
     .rst            (reset),
     .en             (speed_enable),
@@ -117,7 +124,10 @@ Speed #(.WIDTH(SPEED_IN_WIDTH), .WIDTH_speed(SPEED_OUT_WIDTH)) speed_inst(
     .select         (div_select)
 );
 
-  Average_speed #(.WIDTH_div(AVG_SPEED_IN_WIDTH), .WIDTH_out(AVG_SPEED_OUT_WIDTH) ) avg_speed_inst(
+Average_speed #(
+    .WIDTH_div      (AVG_SPEED_IN_WIDTH), 
+    .WIDTH_out      (AVG_SPEED_OUT_WIDTH)) 
+    avg_speed_inst(
     .clk            (clock),
     .rst            (reset),
     .en             (avg_speed_enable),
@@ -135,7 +145,9 @@ Speed #(.WIDTH(SPEED_IN_WIDTH), .WIDTH_speed(SPEED_OUT_WIDTH)) speed_inst(
     .select         (div_select)
 );
 
-  divider #(.WIDTH(DIV_WIDTH)) div_inst(
+divider #(
+    .WIDTH          (DIV_WIDTH))
+    div_inst(
     .clk            (clock),
     .en             (div_enable),
     .Select         (div_select),
