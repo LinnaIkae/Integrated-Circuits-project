@@ -1,4 +1,5 @@
 `timescale 1us / 10ns
+`default_nettype none
 //////////////////////////////////////////////////////////////////////////////////
 // Company: CTU in Prague @ Uni Ulm
 // Engineer: Martin Kostal
@@ -46,7 +47,7 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
        
     
     //IO
-    input clk, en, rst, start;
+    input wire clk, en, rst, start;
     input [12:0] trip_time_sec;
     input [12:0] trip_time_min;
     input [WIDTH_div-1:0] trip_distance;
@@ -54,7 +55,7 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
     output reg valid = 0;
     output reg[WIDTH_div-1:0] dividend, divisor;
     input [WIDTH_div-1:0] dividerres;
-    input busy, ready, select; //indexes are 1 Busy,0 Ready
+    input wire busy, ready, select; //indexes are 1 Busy,0 Ready
     
     //internal variables
     reg [1:0]waiting = 0;

@@ -31,7 +31,7 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
     
     
     //IO
-    input en, rst, clk, reed, start, busy, ready, select;
+    input wire en, rst, clk, reed, start, busy, ready, select;
     input [7:0] circ;
     output reg [WIDTH_speed-1:0] speed;
     output reg valid = 0;

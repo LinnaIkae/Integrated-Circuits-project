@@ -100,52 +100,52 @@ Max_speed #(MAX_SPEED_WIDTH) max_speed_inst(
     .out            (max_speed)
 );
 
-//Speed #(.WIDTH(SPEED_IN_WIDTH), .WIDTH_speed(SPEED_OUT_WIDTH)) speed_inst(
-//    .clk            (clock),
-//    .rst            (reset),
-//    .en             (speed_enable),
-//    .reed           (reed),
-//    .circ           (circ),
-//    .speed          (speed),
-//    .dividend       (dividend1),
-//    .divisor        (divisor1),
-//    .busy           (div_busy),
-//    .ready          (div_ready),
-//    .dividerres     (div_res),
-//    .start          (speed_start),
-//    .valid          (speed_valid),
-//    .select         (div_select)
-//);
+Speed #(.WIDTH(SPEED_IN_WIDTH), .WIDTH_speed(SPEED_OUT_WIDTH)) speed_inst(
+    .clk            (clock),
+    .rst            (reset),
+    .en             (speed_enable),
+    .reed           (reed),
+    .circ           (circ),
+    .speed          (speed),
+    .dividend       (dividend1),
+    .divisor        (divisor1),
+    .busy           (div_busy),
+    .ready          (div_ready),
+    .dividerres     (div_res),
+    .start          (speed_start),
+    .valid          (speed_valid),
+    .select         (div_select)
+);
 
-  //Average_speed #(.WIDTH_div(AVG_SPEED_IN_WIDTH), .WIDTH_out(AVG_SPEED_OUT_WIDTH) ) avg_speed_inst(
-//    .clk            (clock),
-//    .rst            (reset),
-//    .en             (avg_speed_enable),
-//    .start          (avg_speed_start),
-//    .avg_speed      (avg_speed),
-//    .trip_time_sec  (sec_accum),
-//    .trip_time_min  (min_accum),
-//    .trip_distance  (distance),
-//    .dividend       (dividend2),
-//    .divisor        (divisor2),
-//    .busy           (div_busy),
-//    .ready          (div_ready),
-//    .dividerres     (div_res),
-//    .valid          (avg_speed_valid),
-//    .select         (div_select)
-//);
+  Average_speed #(.WIDTH_div(AVG_SPEED_IN_WIDTH), .WIDTH_out(AVG_SPEED_OUT_WIDTH) ) avg_speed_inst(
+    .clk            (clock),
+    .rst            (reset),
+    .en             (avg_speed_enable),
+    .start          (avg_speed_start),
+    .avg_speed      (avg_speed),
+    .trip_time_sec  (sec_accum),
+    .trip_time_min  (min_accum),
+    .trip_distance  (distance),
+    .dividend       (dividend2),
+    .divisor        (divisor2),
+    .busy           (div_busy),
+    .ready          (div_ready),
+    .dividerres     (div_res),
+    .valid          (avg_speed_valid),
+    .select         (div_select)
+);
 
-  //divider #(.WIDTH(DIV_WIDTH)) div_inst(
-//    .clk            (clock),
-//    .en             (div_enable),
-//    .Select         (div_select),
-//    .Dividend1      (dividend1),
-//    .Dividend2      (dividend2),
-//    .Divisor1       (divisor2),
-//    .Divisor2       (divisor2),
-//    .Res            (div_result),
-//    .Busy           (div_busy),
-//    .Ready          (div_ready)
-//    );
+  divider #(.WIDTH(DIV_WIDTH)) div_inst(
+    .clk            (clock),
+    .en             (div_enable),
+    .Select         (div_select),
+    .Dividend1      (dividend1),
+    .Dividend2      (dividend2),
+    .Divisor1       (divisor2),
+    .Divisor2       (divisor2),
+    .Res            (div_result),
+    .Busy           (div_busy),
+    .Ready          (div_ready)
+    );
 
 endmodule
