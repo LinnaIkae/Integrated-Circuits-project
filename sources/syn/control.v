@@ -33,8 +33,14 @@ module control(
     
     output reg speed_start,
     output reg avg_speed_start,
-    output reg div_select
-    
+    output reg div_select,
+
+    output reg en_speed,
+    output reg en_avg,
+    output reg en_dist,
+    output reg en_tim,
+    output reg en_max,
+    output reg en_div
     );
     
     parameter SPEED_WIDTH = 12;
@@ -63,14 +69,12 @@ module control(
     wire[7:0] lower0100_b; 
     wire[7:0] lower1000_b; 
     wire[7:0] upper01_b;   
-    wire[7:0] upper10_b;   
+    wire[7:0] upper10_b;
     
     
     /*
     TODO:
-        add enable control for all submodules.
-        add low speed turnoff detection
-        add divider control 
+    
     */
     
     
@@ -151,12 +155,29 @@ module control(
         end
     end
     
-    
+    always @(posedge clock)
+    begin: movement_detect_disable
+        en_avg <= 1;
+        en_dist <= 1;
+        en_tim <= 1;
+        en_max <= 1;
+        en_div <= 1;
+        if(speed < 6) begin
+            en_avg <= 0;
+            en_dist <= 0;
+            en_tim <= 0;
+            en_max <= 0;
+            en_div <= 0;
+        end
+    end
+
     always @(posedge clock)
     begin: speed_modules_control_and_data
+        //default outputs
         speed_start = 0;
         avg_speed_start = 0;
         div_select = 1;
+
         if(sec_pulse) begin
             speed_start = 1; //tells the module to send numbers to the divider
             div_select = 1; // 1 is speed module and 0 is average speed module input to divider

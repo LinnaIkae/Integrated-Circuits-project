@@ -43,6 +43,8 @@ wire speed_enable, speed_valid, speed_start;
 wire avg_speed_enable, avg_speed_get, avg_speed_valid, avg_speed_start;
 wire div_select;
 
+wire dist_enable, tim_enable, max_enable;
+
 control#(
     .SPEED_WIDTH            (SPEED_OUT_WIDTH),
     .MAX_SPEED_WIDTH        (MAX_SPEED_WIDTH),
@@ -74,8 +76,15 @@ control#(
     .upper01         (upper01),
     .upper10         (upper10),
     
-    .speed_start      (speed_start),
-    .avg_speed_start  (avg_speed_start)
+    .speed_start     (speed_start),
+    .avg_speed_start (avg_speed_start),
+    .div_select      (div_select),
+
+    .en_avg          (avg_speed_enable), 
+    .en_dist         (dist_enable),
+    .en_tim          (tim_enable),
+    .en_max          (max_enable),
+    .en_div          (div_enable)
 );
 
 
