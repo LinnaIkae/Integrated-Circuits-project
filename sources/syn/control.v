@@ -3,10 +3,6 @@
 
 module control(
 
-    parameter SPEED_WIDTH = 12;
-    parameter MAX_SPEED_WIDTH = 12;
-    parameter AVG_SPEED_WIDTH = 12;
-
     input wire clock,
     input wire reset,
     input wire mode,
@@ -40,6 +36,11 @@ module control(
     output reg div_select
     
     );
+    
+    parameter SPEED_WIDTH = 12;
+    parameter MAX_SPEED_WIDTH = 12;
+    parameter AVG_SPEED_WIDTH = 12;
+    
     reg[SPEED_WIDTH-1:0] speed_r;
     reg[AVG_SPEED_WIDTH-1:0] avg_speed_r;
     
@@ -63,6 +64,14 @@ module control(
     wire[7:0] lower1000_b; 
     wire[7:0] upper01_b;   
     wire[7:0] upper10_b;   
+    
+    
+    /*
+    TODO:
+        add enable control for all submodules.
+        add low speed turnoff detection
+        add divider control 
+    */
     
     
     reg [4:0] state_r = s_RESET;

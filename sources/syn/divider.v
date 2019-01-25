@@ -26,8 +26,8 @@
     //bit width of the divider, design uses 12
     parameter WIDTH = 12;
     //input and output ports.
-    input en, clk;
-    input Select;
+    input wire en, clk;
+    input wire Select;
     input [WIDTH-1:0] Dividend1, Dividend2;
     input [WIDTH-1:0] Divisor1, Divisor2;
     output [WIDTH-1:0] Res;
