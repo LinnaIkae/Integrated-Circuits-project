@@ -46,7 +46,7 @@ wire div_select;
 control#(
     .SPEED_WIDTH            (SPEED_OUT_WIDTH),
     .MAX_SPEED_WIDTH        (MAX_SPEED_WIDTH),
-    .AVG_SPEED_OUT_WIDTH    (AVG_SPEED_WIDTH))
+    .AVG_SPEED_WIDTH    (AVG_SPEED_OUT_WIDTH))
     control_inst(
     .clock           (clock),
     .reset           (reset),
@@ -104,6 +104,10 @@ Max_speed #(MAX_SPEED_WIDTH) max_speed_inst(
     .out            (max_speed)
 );
 
+
+wire[SPEED_IN_WIDTH-1:0] divisor1;
+wire[SPEED_IN_WIDTH-1:0] dividend1;
+
 Speed #(
     .WIDTH          (SPEED_IN_WIDTH), 
     .WIDTH_speed    (SPEED_OUT_WIDTH)) 
@@ -123,6 +127,9 @@ Speed #(
     .valid          (speed_valid),
     .select         (div_select)
 );
+
+wire[AVG_SPEED_IN_WIDTH-1:0] divisor2;
+wire[AVG_SPEED_IN_WIDTH-1:0] dividend2;
 
 Average_speed #(
     .WIDTH_div      (AVG_SPEED_IN_WIDTH), 
@@ -145,6 +152,9 @@ Average_speed #(
     .select         (div_select)
 );
 
+wire div_busy, div_ready, div_enable;
+wire[DIV_WIDTH-1: 0] div_res;
+
 divider #(
     .WIDTH          (DIV_WIDTH))
     div_inst(
@@ -153,9 +163,9 @@ divider #(
     .Select         (div_select),
     .Dividend1      (dividend1),
     .Dividend2      (dividend2),
-    .Divisor1       (divisor2),
+    .Divisor1       (divisor1),
     .Divisor2       (divisor2),
-    .Res            (div_result),
+    .Res            (div_res),
     .Busy           (div_busy),
     .Ready          (div_ready)
     );
