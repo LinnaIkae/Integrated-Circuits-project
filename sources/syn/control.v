@@ -157,18 +157,19 @@ module control(
     
     always @(posedge clock)
     begin: movement_detect_disable
+        en_speed <= 1;
         en_avg <= 1;
         en_dist <= 1;
         en_tim <= 1;
         en_max <= 1;
         en_div <= 1;
-        if(speed < 6) begin
-            en_avg <= 0;
-            en_dist <= 0;
-            en_tim <= 0;
-            en_max <= 0;
-            en_div <= 0;
-        end
+//        if(speed < 6) begin
+//            en_avg <= 0;
+//            en_dist <= 0;
+//            en_tim <= 0;
+//            en_max <= 0;
+//            en_div <= 0;
+//        end
     end
 
     always @(posedge clock)
@@ -176,20 +177,20 @@ module control(
         //default outputs
         speed_start = 0;
         avg_speed_start = 0;
-        div_select = 1;
-
-        if(sec_pulse) begin
-            speed_start = 1; //tells the module to send numbers to the divider
-            div_select = 1; // 1 is speed module and 0 is average speed module input to divider
+        if(half_sec_toggle && !speed_start) begin
+            speed_start = 1;
+            div_select = 1;
+        end 
+        else if(!half_sec_toggle && !avg_speed_start) begin
+            avg_speed_start = 1;
+            div_select = 0;
         end
+        
         if(speed_valid) begin
             speed_r = speed;
-            div_select = 0;
-            avg_speed_start = 1;
         end
         if(avg_speed_valid) begin
             avg_speed_r = avg_speed;
-            div_select = 0;
         end
     end
     

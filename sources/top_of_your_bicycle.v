@@ -35,12 +35,14 @@ wire [MAX_SPEED_WIDTH - 1:0] max_speed;
 wire [SPEED_OUT_WIDTH - 1:0] speed;
 wire [AVG_SPEED_OUT_WIDTH-1:0] avg_speed;
 wire [13:0] distance;
+wire [15:0] trip_dist;
+assign trip_dist = {2'b0, distance};
 wire [18:0] HMS_time;
 wire[12:0] sec_accum;
 wire[12:0] min_accum;
 
 wire speed_enable, speed_valid, speed_start;
-wire avg_speed_enable, avg_speed_get, avg_speed_valid, avg_speed_start;
+wire avg_speed_enable, avg_speed_valid, avg_speed_start;
 wire div_select;
 
 wire dist_enable, tim_enable, max_enable;
@@ -79,7 +81,8 @@ control#(
     .speed_start     (speed_start),
     .avg_speed_start (avg_speed_start),
     .div_select      (div_select),
-
+    
+    .en_speed        (speed_enable),
     .en_avg          (avg_speed_enable), 
     .en_dist         (dist_enable),
     .en_tim          (tim_enable),
@@ -139,7 +142,6 @@ Speed #(
 
 wire[AVG_SPEED_IN_WIDTH-1:0] divisor2;
 wire[AVG_SPEED_IN_WIDTH-1:0] dividend2;
-
 Average_speed #(
     .WIDTH_div      (AVG_SPEED_IN_WIDTH), 
     .WIDTH_out      (AVG_SPEED_OUT_WIDTH)) 
@@ -151,7 +153,7 @@ Average_speed #(
     .avg_speed      (avg_speed),
     .trip_time_sec  (sec_accum),
     .trip_time_min  (min_accum),
-    .trip_distance  (distance),
+    .trip_distance  (trip_dist),
     .dividend       (dividend2),
     .divisor        (divisor2),
     .busy           (div_busy),

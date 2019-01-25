@@ -37,7 +37,6 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
     output reg valid = 0;
     output reg[WIDTH-1:0] dividend, divisor;
     input [WIDTH-1:0] dividerres;
-    //inout [3:0]dividercontrol; //indexes are 1 Busy,0 Ready, 2 master signal to avg_speed, 3 start division
     
     //internal variables
     reg [WIDTH-1:0]cnt = 0; //measures time between REEDS
@@ -47,17 +46,15 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
     wire Busy = busy;//dividercontrol[1];
     wire Ready = ready;//dividercontrol[0];
     reg Take_div = 0;
-    //assign dividercontrol[2] = (Ready) ? Take_div : 'bz;
     reg Start_div = 0;
-    //assign dividercontrol[3] = (Take_div) ? Start_div : 'bz;    
     
-    initial begin
-        cico <= circ*CONST;
-    end
+//    initial begin   // I'M PRETTY SURE INITIAL BLOCKS ARE NOT SYNTHESIZABLE
+//        cico <= circ*CONST;
+//    end
     always @(posedge clk)
     begin
+        cico = circ*CONST;
         if (rst == 1) begin
-             cico = circ*CONST;
              cnt = 0;
              tim = 0;
         end
