@@ -43,14 +43,11 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
     reg [WIDTH-1:0]tim = 0; //stores time between REEDS
     reg [1:0]waiting = 0;
     reg [WIDTH+8-1:0]cico = 0; //stores circ*const value as Q16.8
-    wire Busy = busy;//dividercontrol[1];
-    wire Ready = ready;//dividercontrol[0];
+    wire Busy = busy;
+    wire Ready = ready;
     reg Take_div = 0;
     reg Start_div = 0;
     
-//    initial begin   // I'M PRETTY SURE INITIAL BLOCKS ARE NOT SYNTHESIZABLE
-//        cico <= circ*CONST;
-//    end
     always @(posedge clk)
     begin
         cico = circ*CONST;
@@ -62,7 +59,6 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
         if (en == 1) begin
             cnt <= (reed == 1)? 0 : cnt + 1;
             tim <= (reed == 1)? cnt : tim;
-           // A <= (A == 0) ? circ*CONST : A;
         end
         
         //topmodule asks for speed
@@ -70,13 +66,8 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
             valid  <= 0;
             Take_div <= 1;
         //sends to divider
-            if (/*Busy == 1 &&*/ waiting == 0)begin
+            if (waiting == 0)begin
                 waiting <= 1;
-//            end else begin
-//                dividerbus[2*WIDTH-1:WIDTH] <= cico[WIDTH+8-1:8];
-//                dividerbus[WIDTH-1:0] <= tim;
-//                Start_div <= 1;
-//                waiting <= 2;
             end
         end
         if (waiting == 1 && Busy == 0)begin
