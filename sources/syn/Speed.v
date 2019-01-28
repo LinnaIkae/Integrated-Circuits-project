@@ -47,15 +47,16 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
     wire Busy = busy;
     wire Ready = ready;
     
-    reg Take_div = 0;
-    reg Start_div = 0;
-    
     always @(posedge clk)
     begin
         cico = circ*CONST;
         if (rst == 1) begin
              cnt <= 0;
              tim <= 0;
+             speed <= 0;
+             valid <= 0;
+             dividend <= 0;
+             divisor <= 0;
              //other signals need to also reset here?
         end
         else begin
@@ -67,7 +68,6 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
             //topmodule asks for speed
             if (start == 1) begin
                 valid  <= 0;
-                Take_div <= 1;
                 //sends to divider
                 if (waiting == 0)begin
                     waiting <= 1;
@@ -76,7 +76,6 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
             if (waiting == 1 && Busy == 0)begin
                 dividend <= cico[WIDTH+8-1:8];
                 divisor <= tim;
-                Start_div <= 1;
                 waiting <= 2;
             end
             
@@ -87,9 +86,7 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
             if (waiting == 3 && Ready == 1)begin
                 speed <= (dividerres[WIDTH_speed-1:0]>99) ? 99 : dividerres[WIDTH_speed-1:0]; //detects overflow
                 valid <=1;
-                Start_div <= 0;
                 waiting <= 0;
-                Take_div <=0;
             end
         end
     end

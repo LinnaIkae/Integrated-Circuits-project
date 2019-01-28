@@ -64,6 +64,9 @@ module control(
     reg mode_r;
     wire d2a_valid;
     
+    reg speed_started = 0;
+    reg avg_speed_started = 0;
+    
     wire[7:0] lower0001_b; 
     wire[7:0] lower0010_b; 
     wire[7:0] lower0100_b; 
@@ -72,18 +75,17 @@ module control(
     wire[7:0] upper10_b;
     
     
-    /*
-    TODO:
-    
-    */
-    
-    
     reg [4:0] state_r = s_RESET;
     
     wire high_speed;
     assign high_speed = (speed > 65);
     
     reg half_sec_toggle;
+
+    reg AVS_d;
+    reg DAY_d;
+    reg MAX_d;
+    reg TIM_d;
     
     always @(posedge clock)
     begin: FSM
@@ -91,7 +93,10 @@ module control(
       DAY <= 0;
       MAX <= 0;
       TIM <= 0;
-    
+        AVS_d <= 0;
+        DAY_d <= 0;
+        MAX_d <= 0;
+        TIM_d <= 0;
       if (reset)
          state_r <= s_RESET;
       else
@@ -104,6 +109,7 @@ module control(
                   state_r <= s_AVS;
                   end
                DAY <= 1;
+               DAY_d <= 1;
                if(high_speed && half_sec_toggle) begin
                   AVS <= 1;
                   MAX <= 1;
@@ -115,6 +121,7 @@ module control(
                     state_r <= s_TIM;
                     end
                 AVS <= 1;
+                AVS_d <= 1;
                 if(high_speed && half_sec_toggle) begin
                     TIM <= 1;
                     MAX <= 1;
@@ -126,6 +133,7 @@ module control(
                   state_r <= s_MAX;
                   end
                TIM <= 1;
+               TIM_d <= 1;
                if(high_speed && half_sec_toggle) begin
                    AVS <= 1;
                    MAX <= 1;
@@ -137,6 +145,7 @@ module control(
                   state_r <= s_DAY;
                   end
                MAX <= 1;
+               MAX_d <= 1;
                if(high_speed && half_sec_toggle) begin
                    AVS <= 1;
                    TIM <= 1;
@@ -151,7 +160,7 @@ module control(
             half_sec_toggle <= 0;
         end
         if(half_sec_pulse) begin
-            half_sec_toggle = ~half_sec_toggle;
+            half_sec_toggle <= ~half_sec_toggle;
         end
     end
     
@@ -163,34 +172,37 @@ module control(
         en_tim <= 1;
         en_max <= 1;
         en_div <= 1;
-//        if(speed < 6) begin
-//            en_avg <= 0;
-//            en_dist <= 0;
-//            en_tim <= 0;
-//            en_max <= 0;
-//            en_div <= 0;
-//        end
+        if(speed < 6) begin
+            en_avg <= 0;
+            en_dist <= 0;
+            en_tim <= 0;
+            en_max <= 0;
+        end
     end
 
     always @(posedge clock)
     begin: speed_modules_control_and_data
         //default outputs
-        speed_start = 0;
-        avg_speed_start = 0;
-        if(half_sec_toggle && !speed_start) begin
-            speed_start = 1;
-            div_select = 1;
+        speed_start <= 0;
+        avg_speed_start <= 0;
+        if(half_sec_toggle && speed_started == 0) begin
+            speed_start <= 1;
+            speed_started <= 1;
+            avg_speed_started <= 0;
+            div_select <= 1;
         end 
-        else if(!half_sec_toggle && !avg_speed_start) begin
-            avg_speed_start = 1;
-            div_select = 0;
+        else if(!half_sec_toggle && avg_speed_started == 0) begin
+            avg_speed_start <= 1;
+            avg_speed_started <= 1;
+            speed_started <= 0;
+            div_select <= 0;
         end
         
         if(speed_valid) begin
-            speed_r = speed;
+            speed_r <= speed;
         end
         if(avg_speed_valid) begin
-            avg_speed_r = avg_speed;
+            avg_speed_r <= avg_speed;
         end
     end
     
@@ -250,10 +262,10 @@ module control(
         .hours      (hours),     
         .minutes    (minutes),   
         .seconds    (seconds),   
-        .AVS        (AVS),       
-        .DAY        (DAY),       
-        .MAX        (MAX),       
-        .TIM        (TIM),       
+        .AVS        (AVS_d),       
+        .DAY        (DAY_d),       
+        .MAX        (MAX_d),       
+        .TIM        (TIM_d),       
         .start      (d2a_start),
         .lower0001  (lower0001_b),  
         .lower0010  (lower0010_b),  

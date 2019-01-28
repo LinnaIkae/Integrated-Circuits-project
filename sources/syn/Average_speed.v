@@ -91,12 +91,12 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
             end
                     
             if (waiting == 2 && Busy == 1)begin
-                        waiting <= 3;
+                waiting <= 3;
             end        
             
             if (waiting == 3 && Ready == 1)begin
-                avg_speed <= (dividerres[WIDTH_out-1:0]>7'b1111111) ? 7'b1111111 : dividerres[WIDTH_out-1:0];
-                valid = 1;
+                avg_speed <= (dividerres[WIDTH_out-1:0]> 999) ? 999 : dividerres[WIDTH_out-1:0];
+                valid <= 1;
                 waiting <= 0;
             end
         end

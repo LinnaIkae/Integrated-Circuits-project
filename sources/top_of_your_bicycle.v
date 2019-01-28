@@ -27,7 +27,7 @@ parameter SPEED_IN_WIDTH = 16;
 parameter SPEED_OUT_WIDTH = 12;
 parameter AVG_SPEED_IN_WIDTH = 16;
 parameter AVG_SPEED_OUT_WIDTH = 12;
-parameter DIV_WIDTH = 12;
+parameter DIV_WIDTH = 16;
 
 wire half_sec_pulse;
 wire sec_pulse;
