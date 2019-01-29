@@ -43,9 +43,9 @@ module control(
     output reg en_div
     );
     
-    parameter SPEED_WIDTH = 12;
-    parameter MAX_SPEED_WIDTH = 12;
-    parameter AVG_SPEED_WIDTH = 12;
+    parameter SPEED_WIDTH = 7;
+    parameter MAX_SPEED_WIDTH = 7;
+    parameter AVG_SPEED_WIDTH = 10;
     
     reg[SPEED_WIDTH-1:0] speed_r;
     reg[AVG_SPEED_WIDTH-1:0] avg_speed_r;
