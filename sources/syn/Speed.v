@@ -26,7 +26,7 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
     
     //parameters of the module
     parameter WIDTH = 16;
-    parameter WIDTH_speed = 12;
+    parameter WIDTH_speed = 7;
     parameter CONST = 16'b1001001_10111010; //approx 73.728;
     
     //IO
