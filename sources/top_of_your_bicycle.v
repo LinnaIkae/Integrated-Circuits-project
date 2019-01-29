@@ -22,11 +22,11 @@ module TOP_OF_YOUR_BICYCLE (
   output wire [7:0] upper10
 );
 
-parameter MAX_SPEED_WIDTH = 12;
+parameter MAX_SPEED_WIDTH = 7; //only 7bits are effectively used instead of 12
 parameter SPEED_IN_WIDTH = 16;
-parameter SPEED_OUT_WIDTH = 12;
+parameter SPEED_OUT_WIDTH = 7; //only 7bits are effectively used instead of 12
 parameter AVG_SPEED_IN_WIDTH = 16;
-parameter AVG_SPEED_OUT_WIDTH = 12;
+parameter AVG_SPEED_OUT_WIDTH = 10; //10bits are required for 99.9 range 
 parameter DIV_WIDTH = 16;
 
 wire half_sec_pulse;
