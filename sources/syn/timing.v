@@ -33,7 +33,7 @@ module timing(
         if (reset == 1 || cycles_at_lim) begin
             cycles_r <= 0;
         end
-        else if(enable == 1) begin
+        else begin
             cycles_r <= cycles_r + 1;
         end
         

@@ -53,7 +53,6 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
              valid <= 0;
              dividend <= 0;
              divisor <= 0;
-             //other signals need to also reset here?
         end
         else begin
             if (en == 1) begin

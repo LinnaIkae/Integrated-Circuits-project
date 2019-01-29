@@ -11,11 +11,11 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="22418923306666666fs"></ZoomStartTime>
-      <ZoomEndTime time="36348923306666667fs"></ZoomEndTime>
-      <Cursor1Time time="33509679840000000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="1042000000000000001fs"></ZoomEndTime>
+      <Cursor1Time time="36000884400000000fs"></Cursor1Time>
    </zoom_setting>
-   <WVObjectSize size="202" />
+   <WVObjectSize size="204" />
    <wvobject type="logic" fp_name="/tb_bicycle/CLK">
       <obj_property name="ElementShortName">CLK</obj_property>
       <obj_property name="ObjectShortName">CLK</obj_property>
@@ -236,6 +236,30 @@
    <wvobject fp_name="divider165" type="divider">
       <obj_property name="label">DUT</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/speed_enable">
+      <obj_property name="ElementShortName">speed_enable</obj_property>
+      <obj_property name="ObjectShortName">speed_enable</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/avg_speed_enable">
+      <obj_property name="ElementShortName">avg_speed_enable</obj_property>
+      <obj_property name="ObjectShortName">avg_speed_enable</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/div_enable">
+      <obj_property name="ElementShortName">div_enable</obj_property>
+      <obj_property name="ObjectShortName">div_enable</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/dist_enable">
+      <obj_property name="ElementShortName">dist_enable</obj_property>
+      <obj_property name="ObjectShortName">dist_enable</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/tim_enable">
+      <obj_property name="ElementShortName">tim_enable</obj_property>
+      <obj_property name="ObjectShortName">tim_enable</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/max_enable">
+      <obj_property name="ElementShortName">max_enable</obj_property>
+      <obj_property name="ObjectShortName">max_enable</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_bicycle/student_dut/clock">
       <obj_property name="ElementShortName">clock</obj_property>
@@ -736,14 +760,6 @@
       <obj_property name="ObjectShortName">dividerres[15:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/avg_speed_inst/busy">
-      <obj_property name="ElementShortName">busy</obj_property>
-      <obj_property name="ObjectShortName">busy</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/avg_speed_inst/ready">
-      <obj_property name="ElementShortName">ready</obj_property>
-      <obj_property name="ObjectShortName">ready</obj_property>
-   </wvobject>
    <wvobject type="logic" fp_name="/tb_bicycle/student_dut/avg_speed_inst/select">
       <obj_property name="ElementShortName">select</obj_property>
       <obj_property name="ObjectShortName">select</obj_property>
@@ -809,14 +825,6 @@
    <wvobject type="logic" fp_name="/tb_bicycle/student_dut/speed_inst/start">
       <obj_property name="ElementShortName">start</obj_property>
       <obj_property name="ObjectShortName">start</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/speed_inst/busy">
-      <obj_property name="ElementShortName">busy</obj_property>
-      <obj_property name="ObjectShortName">busy</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/speed_inst/ready">
-      <obj_property name="ElementShortName">ready</obj_property>
-      <obj_property name="ObjectShortName">ready</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_bicycle/student_dut/speed_inst/select">
       <obj_property name="ElementShortName">select</obj_property>

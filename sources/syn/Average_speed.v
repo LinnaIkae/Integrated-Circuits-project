@@ -66,7 +66,7 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
 
         if (rst == 1) begin
             avg_speed <= 0;
-            vaid <= 0;
+            valid <= 0;
             waiting <= 0;
             dividend <= 0;
             divisor <= 0;
