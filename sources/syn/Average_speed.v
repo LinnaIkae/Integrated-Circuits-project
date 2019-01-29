@@ -41,7 +41,7 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
     
     //parameters of the module
     parameter WIDTH_div = 16;
-    parameter WIDTH_out = 12;
+    parameter WIDTH_out = 10;
     parameter CONST_SEC = 3600;
     parameter CONST_MIN = 60;
        
