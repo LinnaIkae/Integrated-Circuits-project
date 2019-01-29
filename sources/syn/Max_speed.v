@@ -23,7 +23,7 @@
 
 module Max_speed(  clk, r, enable, speed,out
     );
-    parameter WIDTH = 12; 
+    parameter WIDTH = 7; 
     input [WIDTH-1:0]speed;
     input wire clk, r, enable;
     output reg [WIDTH-1:0] out = 0;
