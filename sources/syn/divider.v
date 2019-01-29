@@ -23,8 +23,8 @@
 
  module divider(en, clk,Dividend1, Dividend2, Divisor1, Divisor2,Res,Busy,Ready, Select);
 
-    //bit width of the divider, design uses 12
-    parameter WIDTH = 12;
+    //bit width of the divider, design uses 16
+    parameter WIDTH = 16;
     //input and output ports.
     input wire en, clk;
     input wire Select;
