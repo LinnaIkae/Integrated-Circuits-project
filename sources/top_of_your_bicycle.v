@@ -96,12 +96,14 @@ distance distance_inst(
     .reset          (reset),
     .reed           (reed),
     .circ           (circ),
+    .enable         (dist_enable),
     .distance       (distance)
 );
 
 timing timing_inst(
     .clock          (clock),
     .reset          (reset),
+    .enable         (tim_enable),
     .HMS_time       (HMS_time),
     .sec_accum      (sec_accum),
     .min_accum      (min_accum),
@@ -112,6 +114,7 @@ timing timing_inst(
 Max_speed #(MAX_SPEED_WIDTH) max_speed_inst(
     .speed          (speed),
     .clk            (clock), 
+    .enable         (max_enable),
     .r              (reset),
     .out            (max_speed)
 );
@@ -142,6 +145,7 @@ Speed #(
 
 wire[AVG_SPEED_IN_WIDTH-1:0] divisor2;
 wire[AVG_SPEED_IN_WIDTH-1:0] dividend2;
+
 Average_speed #(
     .WIDTH_div      (AVG_SPEED_IN_WIDTH), 
     .WIDTH_out      (AVG_SPEED_OUT_WIDTH)) 

@@ -26,6 +26,7 @@ module distance(
     input wire reset,
     input wire reed,
     input wire[7:0] circ,
+    input wire enable,
     
     output wire[13:0] distance
     );
@@ -41,7 +42,7 @@ module distance(
         if (reset == 1 || compare == 1) begin
             circ_cnt_r <= 0;
         end
-        else if(reed == 1) begin
+        else if(reed == 1 && enable == 1) begin
             circ_cnt_r <= circ_cnt_r + circ;
         end
         

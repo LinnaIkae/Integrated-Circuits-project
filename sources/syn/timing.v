@@ -4,6 +4,7 @@
 module timing(
     input wire clock,
     input wire reset,
+    input wire enable,
     
     output wire[19:0] HMS_time, //hours, minutes, seconds
     output wire[12:0] sec_accum,
@@ -29,19 +30,21 @@ module timing(
     always @(posedge clock)
     begin: cycles_inc
     
-        if (reset == 1) begin
+        if (reset == 1 || cycles_at_lim) begin
             cycles_r <= 0;
         end
-        else if (cycles_at_lim ) begin
-            cycles_r <= 0;
+        else if(enable == 1) begin
+            cycles_r <= cycles_r + 1;
         end
-        else cycles_r <= cycles_r + 1;
         
     end: cycles_inc
     
     always @(posedge clock)
     begin: count
     
+        // Even when module is not enabled, it will generate halfsec and sec
+        // outputs for the display.
+
         half_sec_pulse_r <= 0;
         sec_pulse_r <= 0;
         
@@ -53,12 +56,12 @@ module timing(
             hrs_r <= 0;
             sec_pulse_done_r <= 0;
         end
-        if (cycles_at_lim ) begin
-            half_sec_r <= half_sec_r + 1;
+        if (cycles_at_lim) begin
+            if(enable == 1) half_sec_r <= half_sec_r + 1;
             half_sec_pulse_r <= 1;
             if (sec_pulse_done_r) begin
                 sec_pulse_r <= 1;
-                sec_accum_r <= sec_accum_r + 1;
+                if(enable == 1) sec_accum_r <= sec_accum_r + 1;
             end
             sec_pulse_done_r <= ~sec_pulse_done_r;
             

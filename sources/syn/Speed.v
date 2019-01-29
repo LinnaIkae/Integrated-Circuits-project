@@ -21,7 +21,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, dividerres, busy, ready, select);
+module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, dividerres, Busy, Ready, select);
     //add valid output
     
     //parameters of the module
@@ -30,7 +30,7 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
     parameter CONST = 16'b1001001_10111010; //approx 73.728;
     
     //IO
-    input wire en, rst, clk, reed, start, busy, ready, select;
+    input wire en, rst, clk, reed, start, Busy, Ready, select;
     input [7:0] circ;
     output reg [WIDTH_speed-1:0] speed;
     output reg valid = 0;
@@ -42,10 +42,6 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
     reg [WIDTH-1:0]tim = 0; //stores time between REEDS
     reg [1:0]waiting = 0;
     reg [WIDTH+8-1:0]cico = 0; //stores circ*const value as Q16.8
-
-    // Arent these two wires now unnecessary?
-    wire Busy = busy;
-    wire Ready = ready;
     
     always @(posedge clk)
     begin

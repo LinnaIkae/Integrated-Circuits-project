@@ -21,7 +21,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_distance, avg_speed, dividend, divisor, busy, ready, dividerres, valid, select
+module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_distance, avg_speed, dividend, divisor, Busy, Ready, dividerres, valid, select
     );
     //    .clk            (clock),
     //    .rst            (reset),
@@ -55,26 +55,25 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
     output reg valid = 0;
     output reg[WIDTH_div-1:0] dividend, divisor;
     input [WIDTH_div-1:0] dividerres;
-    input wire busy, ready, select;
+    input wire Busy, Ready, select;
     
     //internal variables
     reg [1:0]waiting = 0;
     reg [WIDTH_div-1:0]A = 0;
-
-    // These are not needed I think.
-    wire Busy = busy;
-    wire Ready = ready;
     
     always @(posedge clk)
     begin
 
         if (rst == 1) begin
             avg_speed <= 0;
+            vaid <= 0;
+            waiting <= 0;
+            dividend <= 0;
+            divisor <= 0;
+            A = 0;
         end
-        else begin
-            if (en == 1) begin
-                A <= (trip_time_sec<6000) ? trip_distance * CONST_SEC : trip_distance * CONST_MIN;
-            end  else  A <= A;
+        else if (en == 1) begin
+            A <= (trip_time_sec<6000) ? trip_distance * CONST_SEC : trip_distance * CONST_MIN;
             
             //topmodule asks for average  speed
             if (start == 1) begin
@@ -99,6 +98,9 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
                 valid <= 1;
                 waiting <= 0;
             end
+        end 
+        else  begin
+            valid <= 0;
         end
     end
     
