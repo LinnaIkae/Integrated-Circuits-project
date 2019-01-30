@@ -12,20 +12,20 @@ create_clock -add -name CLK125_CLK -period 8.00 [get_ports CLK125M]
 ##Switches
 
 ##wut
-set_property PACKAGE_PIN G15 [get_ports SW[0]]
-set_property IOSTANDARD LVCMOS33 [get_ports SW[0]]
+set_property PACKAGE_PIN G15 [get_ports TEST_SW[0]]
+set_property IOSTANDARD LVCMOS33 [get_ports TEST_SW[0]]
 
 ##IO_L24P_T3_34
-set_property PACKAGE_PIN P15 [get_ports SW[1]]
-set_property IOSTANDARD LVCMOS33 [get_ports SW[1]]
+set_property PACKAGE_PIN P15 [get_ports TEST_SW[1]]
+set_property IOSTANDARD LVCMOS33 [get_ports TEST_SW[1]]
 
 ##IO_L4N_T0_34
-set_property PACKAGE_PIN W13 [get_ports SW[2]]
-set_property IOSTANDARD LVCMOS33 [get_ports SW[2]]
+set_property PACKAGE_PIN W13 [get_ports TEST_SW[2]]
+set_property IOSTANDARD LVCMOS33 [get_ports TEST_SW[2]]
 
 ##IO_L9P_T1_DQS_34
-set_property PACKAGE_PIN T16 [get_ports SW[3]]
-set_property IOSTANDARD LVCMOS33 [get_ports SW[3]]
+set_property PACKAGE_PIN T16 [get_ports TEST_SW[3]]
+set_property IOSTANDARD LVCMOS33 [get_ports TEST_SW[3]]
 
 ##Buttos
 ##IO_L20N_T3_34

@@ -37,7 +37,7 @@ wire [AVG_SPEED_OUT_WIDTH-1:0] avg_speed;
 wire [13:0] distance;
 wire [15:0] trip_dist;
 assign trip_dist = {2'b0, distance};
-wire [18:0] HMS_time;
+wire [19:0] HMS_time;
 wire[12:0] sec_accum;
 wire[12:0] min_accum;
 
