@@ -28,10 +28,11 @@ module distance(
     input wire[7:0] circ,
     input wire enable,
     
-    output wire[13:0] distance
+    output wire[13:0] distance,
+    output wire[13:0] centimeters
     );
     
-    reg[13:0] circ_cnt_r; //not sure if should initialise these
+    reg[13:0] circ_cnt_r;
     reg[13:0] distance_r;
     wire compare;
     
@@ -59,5 +60,6 @@ module distance(
     end //dist_increment
     
     assign distance = distance_r;
+    assign centimeters = circ_cnt_r;
     
 endmodule

@@ -11,11 +11,11 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="32184813333333fs"></ZoomStartTime>
-      <ZoomEndTime time="32234813333334fs"></ZoomEndTime>
-      <Cursor1Time time="32226480000000fs"></Cursor1Time>
+      <ZoomStartTime time="9312000000000000fs"></ZoomStartTime>
+      <ZoomEndTime time="26232000000000001fs"></ZoomEndTime>
+      <Cursor1Time time="16071736200000000fs"></Cursor1Time>
    </zoom_setting>
-   <WVObjectSize size="183" />
+   <WVObjectSize size="193" />
    <wvobject type="logic" fp_name="/tb_bicycle/CLK">
       <obj_property name="ElementShortName">CLK</obj_property>
       <obj_property name="ObjectShortName">CLK</obj_property>
@@ -723,6 +723,50 @@
       <obj_property name="ObjectShortName">CONST_MIN[31:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
+   <wvobject fp_name="divider224" type="divider">
+      <obj_property name="label">dist</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/distance_inst/clock">
+      <obj_property name="ElementShortName">clock</obj_property>
+      <obj_property name="ObjectShortName">clock</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/distance_inst/reset">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/distance_inst/reed">
+      <obj_property name="ElementShortName">reed</obj_property>
+      <obj_property name="ObjectShortName">reed</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_bicycle/student_dut/distance_inst/circ">
+      <obj_property name="ElementShortName">circ[7:0]</obj_property>
+      <obj_property name="ObjectShortName">circ[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/distance_inst/enable">
+      <obj_property name="ElementShortName">enable</obj_property>
+      <obj_property name="ObjectShortName">enable</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_bicycle/student_dut/distance_inst/distance">
+      <obj_property name="ElementShortName">distance[13:0]</obj_property>
+      <obj_property name="ObjectShortName">distance[13:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_bicycle/student_dut/distance_inst/circ_cnt_r">
+      <obj_property name="ElementShortName">circ_cnt_r[13:0]</obj_property>
+      <obj_property name="ObjectShortName">circ_cnt_r[13:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_bicycle/student_dut/distance_inst/distance_r">
+      <obj_property name="ElementShortName">distance_r[13:0]</obj_property>
+      <obj_property name="ObjectShortName">distance_r[13:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/distance_inst/compare">
+      <obj_property name="ElementShortName">compare</obj_property>
+      <obj_property name="ObjectShortName">compare</obj_property>
+   </wvobject>
    <wvobject fp_name="divider117" type="divider">
       <obj_property name="label">speed</obj_property>
       <obj_property name="DisplayName">label</obj_property>
@@ -786,8 +830,8 @@
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/speed_inst/waiting">
-      <obj_property name="ElementShortName">waiting[1:0]</obj_property>
-      <obj_property name="ObjectShortName">waiting[1:0]</obj_property>
+      <obj_property name="ElementShortName">waiting[2:0]</obj_property>
+      <obj_property name="ObjectShortName">waiting[2:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/speed_inst/cico">

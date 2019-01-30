@@ -14,7 +14,7 @@ create_clock -add -name CLK125_CLK -period 8.00 [get_ports CLK125M]
 ##wut
 set_property PACKAGE_PIN G15 [get_ports SW[0]]
 set_property IOSTANDARD LVCMOS33 [get_ports SW[0]]
-G
+
 ##IO_L24P_T3_34
 set_property PACKAGE_PIN P15 [get_ports SW[1]]
 set_property IOSTANDARD LVCMOS33 [get_ports SW[1]]
@@ -275,7 +275,8 @@ set_property IOSTANDARD LVCMOS33 [get_ports SW[3]]
 #set_property IOSTANDARD LVCMOS33 [get_ports {jd_p[1]}]
 
 ##IO_L11N_T1_SRCC_34
-set_property PACKAGE_PIN U15 [get_ports MODE_KEY] ###Left, black button
+###Left, black button
+set_property PACKAGE_PIN U15 [get_ports MODE_KEY] 
 set_property IOSTANDARD LVCMOS33 [get_ports MODE_KEY]
 
 ##IO_L11P_T1_SRCC_34
@@ -283,11 +284,13 @@ set_property IOSTANDARD LVCMOS33 [get_ports MODE_KEY]
 #set_property IOSTANDARD LVCMOS33 [get_ports {jd_p[2]}]
 
 ##IO_L21N_T3_DQS_34
-set_property PACKAGE_PIN V18 [get_ports REED_PIN] ###Reed pin
+###Reed pin
+set_property PACKAGE_PIN V18 [get_ports REED_PIN] 
 set_property IOSTANDARD LVCMOS33 [get_ports REED_PIN]
 
 ##IO_L21P_T3_DQS_34
-set_property PACKAGE_PIN V17 [get_ports RESET_KEY] ### Right, red button
+ ### Right, red button
+set_property PACKAGE_PIN V17 [get_ports RESET_KEY]
 set_property IOSTANDARD LVCMOS33 [get_ports RESET_KEY]
 
                 ##Pmod Header JE

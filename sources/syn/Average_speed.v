@@ -21,7 +21,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_distance, avg_speed, dividend, divisor, Busy, Ready, dividerres, valid, select
+module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_distance, trip_cents, avg_speed, dividend, divisor, Busy, Ready, dividerres, valid, select
     );
     //    .clk            (clock),
     //    .rst            (reset),
@@ -51,6 +51,7 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
     input [12:0] trip_time_sec;
     input [12:0] trip_time_min;
     input [WIDTH_div-1:0] trip_distance;
+    input [13:0] trip_cents;
     output reg [WIDTH_out-1:0] avg_speed; //out
     output reg valid = 0;
     output reg[WIDTH_div-1:0] dividend, divisor;

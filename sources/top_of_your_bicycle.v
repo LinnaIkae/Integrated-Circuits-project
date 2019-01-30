@@ -43,6 +43,7 @@ wire[12:0] min_accum;
 
 wire speed_enable, speed_valid, speed_start;
 wire avg_speed_enable, avg_speed_valid, avg_speed_start;
+wire[13:0] centimeters;
 wire div_select;
 
 wire dist_enable, tim_enable, max_enable;
@@ -97,7 +98,8 @@ distance distance_inst(
     .reed           (reed),
     .circ           (circ),
     .enable         (dist_enable),
-    .distance       (distance)
+    .distance       (distance),
+    .centimeters    (centimeters)
 );
 
 timing timing_inst(
@@ -158,6 +160,7 @@ Average_speed #(
     .trip_time_sec  (sec_accum),
     .trip_time_min  (min_accum),
     .trip_distance  (trip_dist),
+    .trip_cents     (centimeters),
     .dividend       (dividend2),
     .divisor        (divisor2),
     .Busy           (div_busy),
