@@ -72,7 +72,10 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
             end
             if (waiting == 1 && Busy == 0)begin
                 dividend <= cico[WIDTH+8-1:8];
-                divisor <= tim;
+                if(cnt > 4000) begin
+                    divisor <= cnt;
+                end
+                else divisor <= tim;
                 waiting <= 2;
             end
             
@@ -85,7 +88,10 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
             end
 
             if (waiting == 4 && Ready == 1)begin
-                speed <= (dividerres[WIDTH_speed-1:0]>99) ? 99 : dividerres[WIDTH_speed-1:0]; //detects overflow
+                //if(cnt > 4000) speed <= 0; //FOR VERY LOW SPEEDS
+                //else begin
+                    speed <= (dividerres[WIDTH_speed-1:0]>99) ? 99 : dividerres[WIDTH_speed-1:0]; //detects overflow
+                //end
                 valid <=1;
                 waiting <= 0;
             end
