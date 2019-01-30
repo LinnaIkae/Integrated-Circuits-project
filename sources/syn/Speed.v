@@ -40,7 +40,7 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
     //internal variables
     reg [WIDTH-1:0]cnt = 0; //counts time between REEDS
     reg [WIDTH-1:0]tim = 0; //stores time between REEDS
-    reg [1:0]waiting = 0;
+    reg [2:0]waiting = 0;
     reg [WIDTH+8-1:0]cico = 0; //stores circ*const value as Q16.8
     
     always @(posedge clk)
@@ -75,10 +75,14 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
             end
             
             if (waiting == 2 && Busy == 1)begin
-                        waiting <= 3;
+                waiting <= 3;
+            end
+            
+            if (waiting == 3 && Busy == 1) begin
+                waiting <= 4;
             end
 
-            if (waiting == 3 && Ready == 1)begin
+            if (waiting == 4 && Ready == 1)begin
                 speed <= (dividerres[WIDTH_speed-1:0]>99) ? 99 : dividerres[WIDTH_speed-1:0]; //detects overflow
                 valid <=1;
                 waiting <= 0;

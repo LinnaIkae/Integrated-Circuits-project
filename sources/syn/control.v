@@ -1,8 +1,11 @@
 `timescale 1us/10ns
 `default_nettype none
 
-module control(
-
+module control#(
+   parameter SPEED_WIDTH = 7,
+   parameter MAX_SPEED_WIDTH = 7,
+   parameter AVG_SPEED_WIDTH = 10)
+   (
     input wire clock,
     input wire reset,
     input wire mode,
@@ -42,10 +45,7 @@ module control(
     output reg en_max,
     output reg en_div
     );
-    
-    parameter SPEED_WIDTH = 7;
-    parameter MAX_SPEED_WIDTH = 7;
-    parameter AVG_SPEED_WIDTH = 10;
+   
     
     reg[SPEED_WIDTH-1:0] speed_r;
     reg[AVG_SPEED_WIDTH-1:0] avg_speed_r;

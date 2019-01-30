@@ -11,11 +11,11 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="1042000000000000001fs"></ZoomEndTime>
-      <Cursor1Time time="36000884400000000fs"></Cursor1Time>
+      <ZoomStartTime time="32184813333333fs"></ZoomStartTime>
+      <ZoomEndTime time="32234813333334fs"></ZoomEndTime>
+      <Cursor1Time time="32226480000000fs"></Cursor1Time>
    </zoom_setting>
-   <WVObjectSize size="204" />
+   <WVObjectSize size="183" />
    <wvobject type="logic" fp_name="/tb_bicycle/CLK">
       <obj_property name="ElementShortName">CLK</obj_property>
       <obj_property name="ObjectShortName">CLK</obj_property>
@@ -32,33 +32,17 @@
       <obj_property name="ElementShortName">REED</obj_property>
       <obj_property name="ObjectShortName">REED</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_bicycle/ref_day">
-      <obj_property name="ElementShortName">ref_day</obj_property>
-      <obj_property name="ObjectShortName">ref_day</obj_property>
-   </wvobject>
    <wvobject type="logic" fp_name="/tb_bicycle/dut_day">
       <obj_property name="ElementShortName">dut_day</obj_property>
       <obj_property name="ObjectShortName">dut_day</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_bicycle/ref_avs">
-      <obj_property name="ElementShortName">ref_avs</obj_property>
-      <obj_property name="ObjectShortName">ref_avs</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_bicycle/dut_avs">
       <obj_property name="ElementShortName">dut_avs</obj_property>
       <obj_property name="ObjectShortName">dut_avs</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_bicycle/ref_tim">
-      <obj_property name="ElementShortName">ref_tim</obj_property>
-      <obj_property name="ObjectShortName">ref_tim</obj_property>
-   </wvobject>
    <wvobject type="logic" fp_name="/tb_bicycle/dut_tim">
       <obj_property name="ElementShortName">dut_tim</obj_property>
       <obj_property name="ObjectShortName">dut_tim</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_bicycle/ref_max">
-      <obj_property name="ElementShortName">ref_max</obj_property>
-      <obj_property name="ObjectShortName">ref_max</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_bicycle/dut_max">
       <obj_property name="ElementShortName">dut_max</obj_property>
@@ -80,9 +64,49 @@
       <obj_property name="ElementShortName">dut_point</obj_property>
       <obj_property name="ObjectShortName">dut_point</obj_property>
    </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/ref_day">
+      <obj_property name="ElementShortName">ref_day</obj_property>
+      <obj_property name="ObjectShortName">ref_day</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/control_inst/DAY_d">
+      <obj_property name="ElementShortName">DAY_d</obj_property>
+      <obj_property name="ObjectShortName">DAY_d</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/ref_avs">
+      <obj_property name="ElementShortName">ref_avs</obj_property>
+      <obj_property name="ObjectShortName">ref_avs</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/control_inst/AVS_d">
+      <obj_property name="ElementShortName">AVS_d</obj_property>
+      <obj_property name="ObjectShortName">AVS_d</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/ref_tim">
+      <obj_property name="ElementShortName">ref_tim</obj_property>
+      <obj_property name="ObjectShortName">ref_tim</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/control_inst/TIM_d">
+      <obj_property name="ElementShortName">TIM_d</obj_property>
+      <obj_property name="ObjectShortName">TIM_d</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/ref_max">
+      <obj_property name="ElementShortName">ref_max</obj_property>
+      <obj_property name="ObjectShortName">ref_max</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/control_inst/MAX_d">
+      <obj_property name="ElementShortName">MAX_d</obj_property>
+      <obj_property name="ObjectShortName">MAX_d</obj_property>
+   </wvobject>
    <wvobject fp_name="divider229" type="divider">
       <obj_property name="label">DISPLAY</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/half_sec_pulse">
+      <obj_property name="ElementShortName">half_sec_pulse</obj_property>
+      <obj_property name="ObjectShortName">half_sec_pulse</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/sec_pulse">
+      <obj_property name="ElementShortName">sec_pulse</obj_property>
+      <obj_property name="ObjectShortName">sec_pulse</obj_property>
    </wvobject>
    <wvobject type="vbus" fp_name="vbus226">
       <obj_property name="label">ref_upper 11</obj_property>
@@ -345,18 +369,18 @@
       <obj_property name="ObjectShortName">sec_pulse</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/max_speed">
-      <obj_property name="ElementShortName">max_speed[11:0]</obj_property>
-      <obj_property name="ObjectShortName">max_speed[11:0]</obj_property>
+      <obj_property name="ElementShortName">max_speed[6:0]</obj_property>
+      <obj_property name="ObjectShortName">max_speed[6:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/speed">
-      <obj_property name="ElementShortName">speed[11:0]</obj_property>
-      <obj_property name="ObjectShortName">speed[11:0]</obj_property>
+      <obj_property name="ElementShortName">speed[6:0]</obj_property>
+      <obj_property name="ObjectShortName">speed[6:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/avg_speed">
-      <obj_property name="ElementShortName">avg_speed[11:0]</obj_property>
-      <obj_property name="ObjectShortName">avg_speed[11:0]</obj_property>
+      <obj_property name="ElementShortName">avg_speed[9:0]</obj_property>
+      <obj_property name="ObjectShortName">avg_speed[9:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/distance">
@@ -485,13 +509,13 @@
       <obj_property name="ObjectShortName">sec_pulse</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/max_speed">
-      <obj_property name="ElementShortName">max_speed[11:0]</obj_property>
-      <obj_property name="ObjectShortName">max_speed[11:0]</obj_property>
+      <obj_property name="ElementShortName">max_speed[6:0]</obj_property>
+      <obj_property name="ObjectShortName">max_speed[6:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/speed">
-      <obj_property name="ElementShortName">speed[11:0]</obj_property>
-      <obj_property name="ObjectShortName">speed[11:0]</obj_property>
+      <obj_property name="ElementShortName">speed[6:0]</obj_property>
+      <obj_property name="ObjectShortName">speed[6:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/distance">
@@ -500,8 +524,8 @@
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/avg_speed">
-      <obj_property name="ElementShortName">avg_speed[11:0]</obj_property>
-      <obj_property name="ObjectShortName">avg_speed[11:0]</obj_property>
+      <obj_property name="ElementShortName">avg_speed[9:0]</obj_property>
+      <obj_property name="ObjectShortName">avg_speed[9:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/HMS_time">
@@ -516,54 +540,6 @@
    <wvobject type="logic" fp_name="/tb_bicycle/student_dut/control_inst/avg_speed_valid">
       <obj_property name="ElementShortName">avg_speed_valid</obj_property>
       <obj_property name="ObjectShortName">avg_speed_valid</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/control_inst/AVS">
-      <obj_property name="ElementShortName">AVS</obj_property>
-      <obj_property name="ObjectShortName">AVS</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/control_inst/DAY">
-      <obj_property name="ElementShortName">DAY</obj_property>
-      <obj_property name="ObjectShortName">DAY</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/control_inst/MAX">
-      <obj_property name="ElementShortName">MAX</obj_property>
-      <obj_property name="ObjectShortName">MAX</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/control_inst/TIM">
-      <obj_property name="ElementShortName">TIM</obj_property>
-      <obj_property name="ObjectShortName">TIM</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/control_inst/col">
-      <obj_property name="ElementShortName">col</obj_property>
-      <obj_property name="ObjectShortName">col</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/control_inst/point">
-      <obj_property name="ElementShortName">point</obj_property>
-      <obj_property name="ObjectShortName">point</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/lower0001">
-      <obj_property name="ElementShortName">lower0001[7:0]</obj_property>
-      <obj_property name="ObjectShortName">lower0001[7:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/lower0010">
-      <obj_property name="ElementShortName">lower0010[7:0]</obj_property>
-      <obj_property name="ObjectShortName">lower0010[7:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/lower0100">
-      <obj_property name="ElementShortName">lower0100[7:0]</obj_property>
-      <obj_property name="ObjectShortName">lower0100[7:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/lower1000">
-      <obj_property name="ElementShortName">lower1000[7:0]</obj_property>
-      <obj_property name="ObjectShortName">lower1000[7:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/upper01">
-      <obj_property name="ElementShortName">upper01[7:0]</obj_property>
-      <obj_property name="ObjectShortName">upper01[7:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/upper10">
-      <obj_property name="ElementShortName">upper10[7:0]</obj_property>
-      <obj_property name="ObjectShortName">upper10[7:0]</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_bicycle/student_dut/control_inst/speed_start">
       <obj_property name="ElementShortName">speed_start</obj_property>
@@ -602,24 +578,29 @@
       <obj_property name="ObjectShortName">en_div</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/speed_r">
-      <obj_property name="ElementShortName">speed_r[11:0]</obj_property>
-      <obj_property name="ObjectShortName">speed_r[11:0]</obj_property>
+      <obj_property name="ElementShortName">speed_r[6:0]</obj_property>
+      <obj_property name="ObjectShortName">speed_r[6:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/avg_speed_r">
-      <obj_property name="ElementShortName">avg_speed_r[11:0]</obj_property>
-      <obj_property name="ObjectShortName">avg_speed_r[11:0]</obj_property>
+      <obj_property name="ElementShortName">avg_speed_r[9:0]</obj_property>
+      <obj_property name="ObjectShortName">avg_speed_r[9:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/hours">
       <obj_property name="ElementShortName">hours[6:0]</obj_property>
       <obj_property name="ObjectShortName">hours[6:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/minutes">
       <obj_property name="ElementShortName">minutes[5:0]</obj_property>
       <obj_property name="ObjectShortName">minutes[5:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/seconds">
       <obj_property name="ElementShortName">seconds[5:0]</obj_property>
       <obj_property name="ObjectShortName">seconds[5:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_bicycle/student_dut/control_inst/d2a_start">
       <obj_property name="ElementShortName">d2a_start</obj_property>
@@ -633,34 +614,6 @@
       <obj_property name="ElementShortName">d2a_valid</obj_property>
       <obj_property name="ObjectShortName">d2a_valid</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/lower0001_b">
-      <obj_property name="ElementShortName">lower0001_b[7:0]</obj_property>
-      <obj_property name="ObjectShortName">lower0001_b[7:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/lower0010_b">
-      <obj_property name="ElementShortName">lower0010_b[7:0]</obj_property>
-      <obj_property name="ObjectShortName">lower0010_b[7:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/lower0100_b">
-      <obj_property name="ElementShortName">lower0100_b[7:0]</obj_property>
-      <obj_property name="ObjectShortName">lower0100_b[7:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/lower1000_b">
-      <obj_property name="ElementShortName">lower1000_b[7:0]</obj_property>
-      <obj_property name="ObjectShortName">lower1000_b[7:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/upper01_b">
-      <obj_property name="ElementShortName">upper01_b[7:0]</obj_property>
-      <obj_property name="ObjectShortName">upper01_b[7:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/upper10_b">
-      <obj_property name="ElementShortName">upper10_b[7:0]</obj_property>
-      <obj_property name="ObjectShortName">upper10_b[7:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/state_r">
-      <obj_property name="ElementShortName">state_r[4:0]</obj_property>
-      <obj_property name="ObjectShortName">state_r[4:0]</obj_property>
-   </wvobject>
    <wvobject type="logic" fp_name="/tb_bicycle/student_dut/control_inst/high_speed">
       <obj_property name="ElementShortName">high_speed</obj_property>
       <obj_property name="ObjectShortName">high_speed</obj_property>
@@ -668,38 +621,6 @@
    <wvobject type="logic" fp_name="/tb_bicycle/student_dut/control_inst/half_sec_toggle">
       <obj_property name="ElementShortName">half_sec_toggle</obj_property>
       <obj_property name="ObjectShortName">half_sec_toggle</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/SPEED_WIDTH">
-      <obj_property name="ElementShortName">SPEED_WIDTH[31:0]</obj_property>
-      <obj_property name="ObjectShortName">SPEED_WIDTH[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/MAX_SPEED_WIDTH">
-      <obj_property name="ElementShortName">MAX_SPEED_WIDTH[31:0]</obj_property>
-      <obj_property name="ObjectShortName">MAX_SPEED_WIDTH[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/AVG_SPEED_WIDTH">
-      <obj_property name="ElementShortName">AVG_SPEED_WIDTH[31:0]</obj_property>
-      <obj_property name="ObjectShortName">AVG_SPEED_WIDTH[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/s_RESET">
-      <obj_property name="ElementShortName">s_RESET[4:0]</obj_property>
-      <obj_property name="ObjectShortName">s_RESET[4:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/s_DAY">
-      <obj_property name="ElementShortName">s_DAY[4:0]</obj_property>
-      <obj_property name="ObjectShortName">s_DAY[4:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/s_AVS">
-      <obj_property name="ElementShortName">s_AVS[4:0]</obj_property>
-      <obj_property name="ObjectShortName">s_AVS[4:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/s_TIM">
-      <obj_property name="ElementShortName">s_TIM[4:0]</obj_property>
-      <obj_property name="ObjectShortName">s_TIM[4:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/s_MAX">
-      <obj_property name="ElementShortName">s_MAX[4:0]</obj_property>
-      <obj_property name="ObjectShortName">s_MAX[4:0]</obj_property>
    </wvobject>
    <wvobject fp_name="divider218" type="divider">
       <obj_property name="label">avg_speed</obj_property>
@@ -737,8 +658,8 @@
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/avg_speed_inst/avg_speed">
-      <obj_property name="ElementShortName">avg_speed[11:0]</obj_property>
-      <obj_property name="ObjectShortName">avg_speed[11:0]</obj_property>
+      <obj_property name="ElementShortName">avg_speed[9:0]</obj_property>
+      <obj_property name="ObjectShortName">avg_speed[9:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_bicycle/student_dut/avg_speed_inst/valid">
@@ -831,8 +752,8 @@
       <obj_property name="ObjectShortName">select</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/speed_inst/speed">
-      <obj_property name="ElementShortName">speed[11:0]</obj_property>
-      <obj_property name="ObjectShortName">speed[11:0]</obj_property>
+      <obj_property name="ElementShortName">speed[6:0]</obj_property>
+      <obj_property name="ObjectShortName">speed[6:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_bicycle/student_dut/speed_inst/valid">
@@ -903,14 +824,14 @@
       <obj_property name="ObjectShortName">Dividend1[15:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_bicycle/student_dut/div_inst/Dividend2">
-      <obj_property name="ElementShortName">Dividend2[15:0]</obj_property>
-      <obj_property name="ObjectShortName">Dividend2[15:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-   </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/div_inst/Divisor1">
       <obj_property name="ElementShortName">Divisor1[15:0]</obj_property>
       <obj_property name="ObjectShortName">Divisor1[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_bicycle/student_dut/div_inst/Dividend2">
+      <obj_property name="ElementShortName">Dividend2[15:0]</obj_property>
+      <obj_property name="ObjectShortName">Dividend2[15:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/div_inst/Divisor2">

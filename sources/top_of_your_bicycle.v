@@ -175,6 +175,7 @@ divider #(
     div_inst(
     .clk            (clock),
     .en             (div_enable),
+    .reset          (reset),
     .Select         (div_select),
     .Dividend1      (dividend1),
     .Dividend2      (dividend2),
