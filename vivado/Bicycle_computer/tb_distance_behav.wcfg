@@ -11,9 +11,9 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="9312000000000000fs"></ZoomStartTime>
-      <ZoomEndTime time="26232000000000001fs"></ZoomEndTime>
-      <Cursor1Time time="16071736200000000fs"></Cursor1Time>
+      <ZoomStartTime time="122000000000000000fs"></ZoomStartTime>
+      <ZoomEndTime time="206600000000000001fs"></ZoomEndTime>
+      <Cursor1Time time="173034713280000000fs"></Cursor1Time>
    </zoom_setting>
    <WVObjectSize size="193" />
    <wvobject type="logic" fp_name="/tb_bicycle/CLK">
@@ -389,8 +389,8 @@
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/HMS_time">
-      <obj_property name="ElementShortName">HMS_time[18:0]</obj_property>
-      <obj_property name="ObjectShortName">HMS_time[18:0]</obj_property>
+      <obj_property name="ElementShortName">HMS_time[19:0]</obj_property>
+      <obj_property name="ObjectShortName">HMS_time[19:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/sec_accum">
@@ -823,6 +823,7 @@
       <obj_property name="ElementShortName">cnt[15:0]</obj_property>
       <obj_property name="ObjectShortName">cnt[15:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/speed_inst/tim">
       <obj_property name="ElementShortName">tim[15:0]</obj_property>
