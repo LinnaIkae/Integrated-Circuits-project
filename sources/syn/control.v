@@ -16,7 +16,7 @@ module control#(
     input wire[SPEED_WIDTH-1:0]  speed,
     input wire[13:0] distance,
     input wire[AVG_SPEED_WIDTH-1:0]  avg_speed,
-    input wire[18:0] HMS_time,
+    input wire[19:0] HMS_time,
     
     input wire speed_valid,
     input wire avg_speed_valid,
@@ -47,8 +47,8 @@ module control#(
     );
    
     
-    reg[SPEED_WIDTH-1:0] speed_r;
-    reg[AVG_SPEED_WIDTH-1:0] avg_speed_r;
+    reg[SPEED_WIDTH-1:0] speed_r = 0;
+    reg[AVG_SPEED_WIDTH-1:0] avg_speed_r = 0;
     
     wire[6:0] hours = HMS_time[18:12];
     wire[5:0] minutes = HMS_time[11:6];

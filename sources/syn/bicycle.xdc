@@ -29,8 +29,8 @@ set_property IOSTANDARD LVCMOS33 [get_ports TEST_SW[3]]
 
 ##Buttos
 ##IO_L20N_T3_34
-#set_property PACKAGE_PIN R18 [get_ports {btn[0]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {btn[0]}]
+set_property PACKAGE_PIN R18 [get_ports REED_PIN]  
+set_property IOSTANDARD LVCMOS33 [get_ports REED_PIN] 
 
 ##IO_L24N_T3_34
 #set_property PACKAGE_PIN P16 [get_ports {btn[1]}]
@@ -284,9 +284,13 @@ set_property IOSTANDARD LVCMOS33 [get_ports MODE_KEY]
 #set_property IOSTANDARD LVCMOS33 [get_ports {jd_p[2]}]
 
 ##IO_L21N_T3_DQS_34
-###Reed pin
-set_property PACKAGE_PIN V18 [get_ports REED_PIN] 
-set_property IOSTANDARD LVCMOS33 [get_ports REED_PIN]
+
+
+###     Reed pin
+
+
+##set_property PACKAGE_PIN V18 [get_ports REED_PIN] 
+##set_property IOSTANDARD LVCMOS33 [get_ports REED_PIN]
 
 ##IO_L21P_T3_DQS_34
  ### Right, red button

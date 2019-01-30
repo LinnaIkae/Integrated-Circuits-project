@@ -61,7 +61,10 @@ module timing(
             half_sec_pulse_r <= 1;
             if (sec_pulse_done_r) begin
                 sec_pulse_r <= 1;
-                if(enable == 1) sec_accum_r <= sec_accum_r + 1;
+                if(sec_accum_r >= 8190) begin
+                    sec_accum_r <= 8190;
+                end
+                else if(enable == 1) sec_accum_r <= sec_accum_r + 1;
             end
             sec_pulse_done_r <= ~sec_pulse_done_r;
             

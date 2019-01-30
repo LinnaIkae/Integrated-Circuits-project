@@ -54,6 +54,9 @@ module distance(
         if(reset == 1) begin
             distance_r <= 0;
         end
+        else if(distance > 9999) begin
+            distance_r <= 0;
+        end
         else if(compare == 1) begin
            distance_r <= distance_r + 1;     
         end

@@ -44,7 +44,7 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
     parameter WIDTH_out = 10;
     parameter CONST_SEC = 3600;
     parameter CONST_MIN = 60;
-    parameter CONST_CMS_TO_KMH = 16'b0_010111;   
+    parameter CONST_CMS_TO_KMH = 7'b0_010111;   // = 0.36
     
     //IO
     input wire clk, en, rst, start;
@@ -52,7 +52,7 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
     input [12:0] trip_time_min;
     input [WIDTH_div-1:0] trip_distance;
     input [13:0] trip_cents;
-    output reg [WIDTH_out-1:0] avg_speed; //out
+    output wire [WIDTH_out-1:0] avg_speed; //out
     output reg valid = 0;
     output reg[WIDTH_div-1:0] dividend, divisor;
     input [WIDTH_div-1:0] dividerres;
@@ -61,26 +61,29 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
     //internal variables
     reg [1:0]waiting = 0;
     reg [WIDTH_div-1:0]A = 0;
-    reg cm_conv_flag = 0;
+    reg [WIDTH_div-1:0]B = 0;
+    reg [WIDTH_div-1:0] avg_speed_tmp = 0;
     
     
     always @(posedge clk)
     begin
 
         if (rst == 1) begin
-            avg_speed <= 0;
+            avg_speed_tmp <= 0;            
             valid <= 0;
             waiting <= 0;
             dividend <= 0;
             divisor <= 0;
-            A = 0;
+            A <= 0;
+            B <= 0;
         end
         else if (en == 1) begin
             if (trip_time_sec<1000) begin
                 A <= trip_cents + (trip_distance * 10000);
-                cm_conv_flag <=1;
+                B <= (trip_time_sec * 4'b1011) >> 2;
             end else begin
-                A <= (trip_time_sec<6000) ? trip_distance * CONST_SEC : trip_distance * CONST_MIN; 
+                A <= (trip_time_sec<6000) ? trip_distance * CONST_SEC : trip_distance * CONST_MIN;
+                B<=(trip_time_sec<6000) ? trip_time_sec : trip_time_min; 
             end
            
             
@@ -94,7 +97,7 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
             end
             if (waiting == 1 && Busy == 0 )begin
                 dividend <= A;
-                divisor <= (trip_time_sec<6000) ? trip_time_sec : trip_time_min;
+                divisor <= B;
                 waiting <= 2;
             end
                     
@@ -103,11 +106,8 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
             end        
             
             if (waiting == 3 && Ready == 1)begin
-                if (cm_conv_flag)begin
-                    avg_speed <= (dividerres[WIDTH_out-1:0]> 999) ? 999 :dividerres[WIDTH_out-1:0]*CONST_CMS_TO_KMH;   
-                end else begin
-                    avg_speed <= (dividerres[WIDTH_out-1:0]> 999) ? 999 : dividerres[WIDTH_out-1:0];                   
-                end
+                avg_speed_tmp[WIDTH_div-1:0] <= (dividerres[WIDTH_div-1:0]> 999) ? 999 : dividerres[WIDTH_div-1:0];                   
+                
                 valid <= 1;
                 waiting <= 0; 
             end
@@ -116,5 +116,6 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
             valid <= 0;
         end
     end
+    assign avg_speed = avg_speed_tmp[WIDTH_out-1: 0];
     
 endmodule

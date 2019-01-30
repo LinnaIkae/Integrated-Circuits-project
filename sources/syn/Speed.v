@@ -28,6 +28,7 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
     parameter WIDTH = 16;
     parameter WIDTH_speed = 7;
     parameter CONST = 16'b1001001_10111010; //approx 73.728;
+    parameter MAX_CNT = (2 ^ WIDTH) - 1;
     
     //IO
     input wire en, rst, clk, reed, start, Busy, Ready, select;
@@ -56,8 +57,12 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
         end
         else begin
             if (en == 1) begin
-                cnt <= (reed == 1)? 0 : cnt + 1;
-                
+                if(cnt >= MAX_CNT) begin
+                    cnt <= 0;
+                end
+                else begin  
+                    cnt <= (reed == 1)? 0 : cnt + 1;
+                end
                 tim <= (reed == 1)? cnt : tim;
                 
             end
@@ -72,10 +77,7 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
             end
             if (waiting == 1 && Busy == 0)begin
                 dividend <= cico[WIDTH+8-1:8];
-                if(cnt > 4000) begin
-                    divisor <= cnt;
-                end
-                else divisor <= tim;
+                divisor <= tim;
                 waiting <= 2;
             end
             
@@ -88,10 +90,10 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
             end
 
             if (waiting == 4 && Ready == 1)begin
-                //if(cnt > 4000) speed <= 0; //FOR VERY LOW SPEEDS
-                //else begin
+                if(cnt > 4000) speed <= 0; //FOR VERY LOW SPEEDS
+                else begin
                     speed <= (dividerres[WIDTH_speed-1:0]>99) ? 99 : dividerres[WIDTH_speed-1:0]; //detects overflow
-                //end
+                end
                 valid <=1;
                 waiting <= 0;
             end

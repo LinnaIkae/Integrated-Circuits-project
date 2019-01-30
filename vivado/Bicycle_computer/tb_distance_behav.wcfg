@@ -11,11 +11,11 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="122000000000000000fs"></ZoomStartTime>
-      <ZoomEndTime time="206600000000000001fs"></ZoomEndTime>
-      <Cursor1Time time="173034713280000000fs"></Cursor1Time>
+      <ZoomStartTime time="95616666666666666fs"></ZoomStartTime>
+      <ZoomEndTime time="100876666666666667fs"></ZoomEndTime>
+      <Cursor1Time time="100000000000000000fs"></Cursor1Time>
    </zoom_setting>
-   <WVObjectSize size="193" />
+   <WVObjectSize size="196" />
    <wvobject type="logic" fp_name="/tb_bicycle/CLK">
       <obj_property name="ElementShortName">CLK</obj_property>
       <obj_property name="ObjectShortName">CLK</obj_property>
@@ -657,10 +657,24 @@
       <obj_property name="ObjectShortName">trip_distance[15:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
+   <wvobject type="array" fp_name="/tb_bicycle/student_dut/avg_speed_inst/trip_cents">
+      <obj_property name="ElementShortName">trip_cents[13:0]</obj_property>
+      <obj_property name="ObjectShortName">trip_cents[13:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_bicycle/student_dut/avg_speed_inst/avg_speed_tmp">
+      <obj_property name="ElementShortName">avg_speed_tmp[15:0]</obj_property>
+      <obj_property name="ObjectShortName">avg_speed_tmp[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/avg_speed_inst/avg_speed">
       <obj_property name="ElementShortName">avg_speed[9:0]</obj_property>
       <obj_property name="ObjectShortName">avg_speed[9:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/avg_speed_inst/cm_conv_flag">
+      <obj_property name="ElementShortName">cm_conv_flag</obj_property>
+      <obj_property name="ObjectShortName">cm_conv_flag</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_bicycle/student_dut/avg_speed_inst/valid">
       <obj_property name="ElementShortName">valid</obj_property>
