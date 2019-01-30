@@ -57,7 +57,9 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
         else begin
             if (en == 1) begin
                 cnt <= (reed == 1)? 0 : cnt + 1;
+                
                 tim <= (reed == 1)? cnt : tim;
+                
             end
             
             //topmodule asks for speed
