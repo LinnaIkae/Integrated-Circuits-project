@@ -11,8 +11,8 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="95616666666666666fs"></ZoomStartTime>
-      <ZoomEndTime time="100876666666666667fs"></ZoomEndTime>
+      <ZoomStartTime time="73291666666666666fs"></ZoomStartTime>
+      <ZoomEndTime time="105341666666666667fs"></ZoomEndTime>
       <Cursor1Time time="100000000000000000fs"></Cursor1Time>
    </zoom_setting>
    <WVObjectSize size="196" />
@@ -529,8 +529,8 @@
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/HMS_time">
-      <obj_property name="ElementShortName">HMS_time[18:0]</obj_property>
-      <obj_property name="ObjectShortName">HMS_time[18:0]</obj_property>
+      <obj_property name="ElementShortName">HMS_time[19:0]</obj_property>
+      <obj_property name="ObjectShortName">HMS_time[19:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_bicycle/student_dut/control_inst/speed_valid">
@@ -671,10 +671,6 @@
       <obj_property name="ElementShortName">avg_speed[9:0]</obj_property>
       <obj_property name="ObjectShortName">avg_speed[9:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/avg_speed_inst/cm_conv_flag">
-      <obj_property name="ElementShortName">cm_conv_flag</obj_property>
-      <obj_property name="ObjectShortName">cm_conv_flag</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_bicycle/student_dut/avg_speed_inst/valid">
       <obj_property name="ElementShortName">valid</obj_property>
@@ -861,6 +857,11 @@
    <wvobject type="logic" fp_name="/tb_bicycle/student_dut/speed_inst/Ready">
       <obj_property name="ElementShortName">Ready</obj_property>
       <obj_property name="ObjectShortName">Ready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_bicycle/student_dut/speed_inst/MAX_CNT">
+      <obj_property name="ElementShortName">MAX_CNT[31:0]</obj_property>
+      <obj_property name="ObjectShortName">MAX_CNT[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="divider450" type="divider">
       <obj_property name="label">divider</obj_property>
