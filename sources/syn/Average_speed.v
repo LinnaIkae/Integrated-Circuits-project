@@ -78,7 +78,7 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
             B <= 0;
         end
         else if (en == 1) begin
-            if (trip_time_sec<32766 && trip_distance <= 6) begin //limit time not being over 15bits and ditance too not over 16bits
+            if (trip_time_sec<4094 && trip_distance <= 6) begin //limit time not being over 15bits and ditance too not over 16bits
                 A <= trip_cents + (trip_distance * 10000);
                 B <= (trip_time_sec * 4'b1011) >> 2; //multiply by 2.75 - conversion from cm/ to km/h
             end else begin
