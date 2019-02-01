@@ -44,7 +44,7 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
     parameter WIDTH_out = 10;
     parameter CONST_SEC = 3600;
     parameter CONST_MIN = 60;
-    parameter CONST_CMS_TO_KMH = 7'b0_010111;   // = 0.36
+    
     
     //IO
     input wire clk, en, rst, start;
@@ -78,12 +78,12 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
             B <= 0;
         end
         else if (en == 1) begin
-            if (trip_time_sec<1000) begin
+            if (trip_time_sec<4094 && trip_distance <= 6) begin //limit time not being over 15bits and ditance too not over 16bits
                 A <= trip_cents + (trip_distance * 10000);
-                B <= (trip_time_sec * 4'b1011) >> 2;
+                B <= (trip_time_sec * 4'b1011) >> 2; //multiply by 2.75 - conversion from cm/ to km/h
             end else begin
                 A <= (trip_time_sec<6000) ? trip_distance * CONST_SEC : trip_distance * CONST_MIN;
-                B<=(trip_time_sec<6000) ? trip_time_sec : trip_time_min; 
+                B <=(trip_time_sec<6000) ? trip_time_sec : trip_time_min; 
             end
            
             
