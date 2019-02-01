@@ -11,11 +11,11 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="73291666666666666fs"></ZoomStartTime>
-      <ZoomEndTime time="105341666666666667fs"></ZoomEndTime>
-      <Cursor1Time time="100000000000000000fs"></Cursor1Time>
+      <ZoomStartTime time="40000833200000000fs"></ZoomStartTime>
+      <ZoomEndTime time="59200833200000001fs"></ZoomEndTime>
+      <Cursor1Time time="45000488280000000fs"></Cursor1Time>
    </zoom_setting>
-   <WVObjectSize size="196" />
+   <WVObjectSize size="215" />
    <wvobject type="logic" fp_name="/tb_bicycle/CLK">
       <obj_property name="ElementShortName">CLK</obj_property>
       <obj_property name="ObjectShortName">CLK</obj_property>
@@ -529,8 +529,8 @@
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/control_inst/HMS_time">
-      <obj_property name="ElementShortName">HMS_time[19:0]</obj_property>
-      <obj_property name="ObjectShortName">HMS_time[19:0]</obj_property>
+      <obj_property name="ElementShortName">HMS_time[18:0]</obj_property>
+      <obj_property name="ObjectShortName">HMS_time[18:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_bicycle/student_dut/control_inst/speed_valid">
@@ -667,6 +667,13 @@
       <obj_property name="ObjectShortName">avg_speed_tmp[15:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
+   <wvobject type="array" fp_name="/tb_bicycle/averagespeed">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">averagespeed[31:0]</obj_property>
+      <obj_property name="ObjectShortName">averagespeed[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="label">REF averagespeed[31:0]</obj_property>
+   </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/avg_speed_inst/avg_speed">
       <obj_property name="ElementShortName">avg_speed[9:0]</obj_property>
       <obj_property name="ObjectShortName">avg_speed[9:0]</obj_property>
@@ -690,10 +697,6 @@
       <obj_property name="ElementShortName">dividerres[15:0]</obj_property>
       <obj_property name="ObjectShortName">dividerres[15:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/avg_speed_inst/select">
-      <obj_property name="ElementShortName">select</obj_property>
-      <obj_property name="ObjectShortName">select</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/avg_speed_inst/waiting">
       <obj_property name="ElementShortName">waiting[1:0]</obj_property>
@@ -800,10 +803,6 @@
    <wvobject type="logic" fp_name="/tb_bicycle/student_dut/speed_inst/start">
       <obj_property name="ElementShortName">start</obj_property>
       <obj_property name="ObjectShortName">start</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/speed_inst/select">
-      <obj_property name="ElementShortName">select</obj_property>
-      <obj_property name="ObjectShortName">select</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/speed_inst/speed">
       <obj_property name="ElementShortName">speed[6:0]</obj_property>
@@ -945,5 +944,85 @@
       <obj_property name="ElementShortName">WIDTH[31:0]</obj_property>
       <obj_property name="ObjectShortName">WIDTH[31:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider211" type="divider">
+      <obj_property name="label">timing</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/timing_inst/clock">
+      <obj_property name="ElementShortName">clock</obj_property>
+      <obj_property name="ObjectShortName">clock</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/timing_inst/reset">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/timing_inst/enable">
+      <obj_property name="ElementShortName">enable</obj_property>
+      <obj_property name="ObjectShortName">enable</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_bicycle/student_dut/timing_inst/HMS_time">
+      <obj_property name="ElementShortName">HMS_time[18:0]</obj_property>
+      <obj_property name="ObjectShortName">HMS_time[18:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_bicycle/student_dut/timing_inst/sec_accum">
+      <obj_property name="ElementShortName">sec_accum[12:0]</obj_property>
+      <obj_property name="ObjectShortName">sec_accum[12:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_bicycle/student_dut/timing_inst/min_accum">
+      <obj_property name="ElementShortName">min_accum[12:0]</obj_property>
+      <obj_property name="ObjectShortName">min_accum[12:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/timing_inst/half_sec_pulse">
+      <obj_property name="ElementShortName">half_sec_pulse</obj_property>
+      <obj_property name="ObjectShortName">half_sec_pulse</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/timing_inst/sec_pulse">
+      <obj_property name="ElementShortName">sec_pulse</obj_property>
+      <obj_property name="ObjectShortName">sec_pulse</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_bicycle/student_dut/timing_inst/cycles_r">
+      <obj_property name="ElementShortName">cycles_r[9:0]</obj_property>
+      <obj_property name="ObjectShortName">cycles_r[9:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_bicycle/student_dut/timing_inst/half_sec_r">
+      <obj_property name="ElementShortName">half_sec_r[6:0]</obj_property>
+      <obj_property name="ObjectShortName">half_sec_r[6:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_bicycle/student_dut/timing_inst/sec_accum_r">
+      <obj_property name="ElementShortName">sec_accum_r[12:0]</obj_property>
+      <obj_property name="ObjectShortName">sec_accum_r[12:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_bicycle/student_dut/timing_inst/min_accum_r">
+      <obj_property name="ElementShortName">min_accum_r[12:0]</obj_property>
+      <obj_property name="ObjectShortName">min_accum_r[12:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_bicycle/student_dut/timing_inst/min_r">
+      <obj_property name="ElementShortName">min_r[5:0]</obj_property>
+      <obj_property name="ObjectShortName">min_r[5:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_bicycle/student_dut/timing_inst/hrs_r">
+      <obj_property name="ElementShortName">hrs_r[6:0]</obj_property>
+      <obj_property name="ObjectShortName">hrs_r[6:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/timing_inst/half_sec_pulse_r">
+      <obj_property name="ElementShortName">half_sec_pulse_r</obj_property>
+      <obj_property name="ObjectShortName">half_sec_pulse_r</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/timing_inst/sec_pulse_r">
+      <obj_property name="ElementShortName">sec_pulse_r</obj_property>
+      <obj_property name="ObjectShortName">sec_pulse_r</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/timing_inst/sec_pulse_done_r">
+      <obj_property name="ElementShortName">sec_pulse_done_r</obj_property>
+      <obj_property name="ObjectShortName">sec_pulse_done_r</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_bicycle/student_dut/timing_inst/secs">
+      <obj_property name="ElementShortName">secs[5:0]</obj_property>
+      <obj_property name="ObjectShortName">secs[5:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/timing_inst/cycles_at_lim">
+      <obj_property name="ElementShortName">cycles_at_lim</obj_property>
+      <obj_property name="ObjectShortName">cycles_at_lim</obj_property>
    </wvobject>
 </wave_config>

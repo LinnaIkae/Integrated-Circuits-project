@@ -141,8 +141,7 @@ Speed #(
     .Ready          (div_ready),
     .dividerres     (div_res),
     .start          (speed_start),
-    .valid          (speed_valid),
-    .select         (div_select)
+    .valid          (speed_valid)
 );
 
 wire[AVG_SPEED_IN_WIDTH-1:0] divisor2;
@@ -166,8 +165,7 @@ Average_speed #(
     .Busy           (div_busy),
     .Ready          (div_ready),
     .dividerres     (div_res),
-    .valid          (avg_speed_valid),
-    .select         (div_select)
+    .valid          (avg_speed_valid)
 );
 
 wire div_busy, div_ready, div_enable;
