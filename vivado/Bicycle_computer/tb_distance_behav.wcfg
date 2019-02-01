@@ -11,11 +11,11 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="40000833200000000fs"></ZoomStartTime>
-      <ZoomEndTime time="59200833200000001fs"></ZoomEndTime>
-      <Cursor1Time time="45000488280000000fs"></Cursor1Time>
+      <ZoomStartTime time="171891509520000000fs"></ZoomStartTime>
+      <ZoomEndTime time="271791509520000001fs"></ZoomEndTime>
+      <Cursor1Time time="188541509520000000fs"></Cursor1Time>
    </zoom_setting>
-   <WVObjectSize size="215" />
+   <WVObjectSize size="217" />
    <wvobject type="logic" fp_name="/tb_bicycle/CLK">
       <obj_property name="ElementShortName">CLK</obj_property>
       <obj_property name="ObjectShortName">CLK</obj_property>
@@ -389,8 +389,8 @@
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/HMS_time">
-      <obj_property name="ElementShortName">HMS_time[19:0]</obj_property>
-      <obj_property name="ObjectShortName">HMS_time[19:0]</obj_property>
+      <obj_property name="ElementShortName">HMS_time[18:0]</obj_property>
+      <obj_property name="ObjectShortName">HMS_time[18:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/sec_accum">
@@ -704,9 +704,17 @@
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_bicycle/student_dut/avg_speed_inst/A">
-      <obj_property name="ElementShortName">A[15:0]</obj_property>
-      <obj_property name="ObjectShortName">A[15:0]</obj_property>
+      <obj_property name="ElementShortName">A[25:0]</obj_property>
+      <obj_property name="ObjectShortName">A[25:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_bicycle/student_dut/avg_speed_inst/B">
+      <obj_property name="ElementShortName">B[15:0]</obj_property>
+      <obj_property name="ObjectShortName">B[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_bicycle/student_dut/avg_speed_inst/flag_sec">
+      <obj_property name="ElementShortName">flag_sec</obj_property>
+      <obj_property name="ObjectShortName">flag_sec</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_bicycle/student_dut/avg_speed_inst/Busy">
       <obj_property name="ElementShortName">Busy</obj_property>

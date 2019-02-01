@@ -63,9 +63,11 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
     
     //internal variables
     reg [1:0]waiting = 0;
-    reg [WIDTH_div-1:0]A = 0;
-    reg [WIDTH_div-1:0]B = 0;
+    reg [25:0]A = 0;
+    reg [25:0]B = 0;
     reg [WIDTH_div-1:0] avg_speed_tmp = 0;
+    reg flag_sec = 0;
+    reg flag_sec2 = 0;
     
     
     
@@ -82,12 +84,42 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
             B <= 0;
         end
         else if (en == 1) begin
-            if (trip_time_sec<4094 && trip_distance <= 5) begin //limit time not being over 15bits and ditance too not over 16bits
+            if (/*trip_time_sec<4094 && trip_distance <= 5*/ 1==1) begin //limit time not being over 15bits and ditance too not over 16bits
                 A <= trip_cents + (trip_distance * 10000);
-                B <= (trip_time_sec * 4'b1011) >> 2; //multiply by 2.75 - conversion from cm/ to km/h
+                B <= (trip_time_sec * 10'b1011000111) >> 8; //multiply by 2.75 - conversion from cm/ to km/h
             end else begin
-                A <= (trip_time_sec<6000) ? trip_distance * CONST_SEC : trip_distance * CONST_MIN;
-                B <=(trip_time_sec<6000) ? trip_time_sec : trip_time_min; 
+                if (trip_time_sec<6000)begin
+                    if(trip_distance<19)begin
+                        A <=  trip_distance * CONST_SEC;
+                        B <= trip_time_sec;
+                        flag_sec <= 0;
+                    end else begin
+                        if(trip_distance<1000)begin
+                            A <= trip_distance * 60;
+                            B <= trip_time_sec;
+                            flag_sec <= 1;
+                        end else begin
+                            A <= trip_distance ;//easter egg, should never occur
+                            B <= trip_time_min;
+                            flag_sec <= 1;
+                        end
+                    end
+                    
+                end else begin
+                    if(trip_distance<1000)begin
+                        A <=  trip_distance * 60;
+                        B <= trip_time_min;
+                        flag_sec <= 0;
+                    end else begin
+                        A <=  trip_distance ;
+                        B <= trip_time_min;
+                        flag_sec <= 1;
+                    end
+                    
+                end
+                
+                
+   
             end
            
             
@@ -100,9 +132,10 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
                 end 
             end
             if (waiting == 1 && Busy == 0 )begin
-                dividend <= A;
+                dividend <= A[WIDTH_div-1:0];
                 divisor <= B;
                 waiting <= 2;
+                flag_sec2 <= flag_sec;
             end
                     
             if (waiting == 2 && Busy == 1)begin
@@ -110,7 +143,13 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
             end        
             
             if (waiting == 3 && Ready == 1)begin
-                avg_speed_tmp[WIDTH_div-1:0] <= (dividerres[WIDTH_div-1:0]> 999) ? 999 : dividerres[WIDTH_div-1:0];                   
+                if(flag_sec2==0)begin//mode multiply all before divider
+                    avg_speed_tmp[WIDTH_div-1:0] <= (dividerres[WIDTH_div-1:0]> 999) ? 999 : dividerres[WIDTH_div-1:0];
+                end else begin //mode multiply by 60 after divider
+                    avg_speed_tmp[WIDTH_div-1:0] <= ((dividerres[WIDTH_div-1:0]*60 )> 999)? 999: dividerres[WIDTH_div-1:0] * 60;
+                end
+               //avg_speed_tmp[WIDTH_div-1:0] <=(flag_sec == 0) ? dividerres[WIDTH_div-1:0] * CONST_SEC : dividerres[WIDTH_div-1:0] * CONST_MIN;
+                //avg_speed_tmp[WIDTH_div-1:0] <= (dividerres[WIDTH_div-1:0]> 999) ? 999 : dividerres[WIDTH_div-1:0];                   
                 
                 valid <= 1;
                 waiting <= 0; 
