@@ -16,7 +16,7 @@ module control#(
     input wire[SPEED_WIDTH-1:0]  speed,
     input wire[13:0] distance,
     input wire[AVG_SPEED_WIDTH-1:0]  avg_speed,
-    input wire[19:0] HMS_time,
+    input wire[18:0] HMS_time,
     
     input wire speed_valid,
     input wire avg_speed_valid,
@@ -54,11 +54,11 @@ module control#(
     wire[5:0] minutes = HMS_time[11:6];
     wire[5:0] seconds = HMS_time[5:0];
     
-    parameter s_RESET = 5'b00001;
-    parameter s_DAY = 5'b00010;
-    parameter s_AVS = 5'b00100;
-    parameter s_TIM = 5'b01000;
-    parameter s_MAX = 5'b10000;
+    localparam s_RESET = 5'b00001;
+    localparam s_DAY = 5'b00010;
+    localparam s_AVS = 5'b00100;
+    localparam s_TIM = 5'b01000;
+    localparam s_MAX = 5'b10000;
     
     reg d2a_start;
     reg mode_r;

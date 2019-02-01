@@ -21,7 +21,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, dividerres, Busy, Ready, select);
+module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, dividerres, Busy, Ready);
     //add valid output
     
     //parameters of the module
@@ -31,7 +31,7 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
     parameter MAX_CNT = (2 ** WIDTH) - 1;
     
     //IO
-    input wire en, rst, clk, reed, start, Busy, Ready, select;
+    input wire en, rst, clk, reed, start, Busy, Ready;
     input [7:0] circ;
     output reg [WIDTH_speed-1:0] speed;
     output reg valid = 0;

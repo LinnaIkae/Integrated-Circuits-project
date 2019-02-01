@@ -364,6 +364,6 @@ end
   
 
 // stop after 200 s
-initial #(100*1000000) $finish;
+initial #(200*1000000) $finish;
 
 endmodule

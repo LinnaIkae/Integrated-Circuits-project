@@ -6,7 +6,7 @@ module timing(
     input wire reset,
     input wire enable,
     
-    output wire[19:0] HMS_time, //hours, minutes, seconds
+    output wire[18:0] HMS_time, //hours, minutes, seconds
     output wire[12:0] sec_accum,
     output wire[12:0] min_accum,
     output wire half_sec_pulse,
