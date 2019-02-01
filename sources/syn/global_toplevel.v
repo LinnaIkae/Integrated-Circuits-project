@@ -98,7 +98,7 @@ TOP_OF_YOUR_BICYCLE STUDENTS_DESIGN (
 	.mode(MODE),
 	.circ(CIRC),
 	.reed(REED2BIKE),
-	.reset(RESET_KEY),
+	.reset_in(RESET_KEY),
 	.AVS(avs),
 	.DAY(day),
 	.MAX(max),

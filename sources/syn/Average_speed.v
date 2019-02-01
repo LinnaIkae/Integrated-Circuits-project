@@ -48,21 +48,25 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
     
     //IO
     input wire clk, en, rst, start;
-    input [12:0] trip_time_sec;
-    input [12:0] trip_time_min;
-    input [WIDTH_div-1:0] trip_distance;
-    input [13:0] trip_cents;
-    output wire [WIDTH_out-1:0] avg_speed; //out
-    output reg valid = 0;
-    output reg[WIDTH_div-1:0] dividend, divisor;
-    input [WIDTH_div-1:0] dividerres;
+    input wire[12:0] trip_time_sec;
+    input wire [12:0] trip_time_min;
+    input wire[WIDTH_div-1:0] trip_distance;
+    input wire[13:0] trip_cents;
+    input wire[WIDTH_div-1:0] dividerres;
     input wire Busy, Ready;
+    
+    //out
+    output wire [WIDTH_out-1:0] avg_speed; 
+    output reg valid = 0;
+    output reg [WIDTH_div-1:0] dividend = 0;
+    output reg [WIDTH_div-1:0] divisor = 0;
     
     //internal variables
     reg [1:0]waiting = 0;
     reg [WIDTH_div-1:0]A = 0;
     reg [WIDTH_div-1:0]B = 0;
     reg [WIDTH_div-1:0] avg_speed_tmp = 0;
+    
     
     
     always @(posedge clk)

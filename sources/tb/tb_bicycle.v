@@ -43,7 +43,7 @@ reg [7:0]   CIRC;
    .clock(CLK),
    .mode(MODE),
    .reed(REED),
-   .reset(RESET),
+   .reset_in(RESET),
    .circ(CIRC),
    .DAY(dut_day),
    .AVS(dut_avs),

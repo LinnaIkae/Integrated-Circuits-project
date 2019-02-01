@@ -5,7 +5,7 @@ module TOP_OF_YOUR_BICYCLE (
   input wire clock,
   input wire mode,
   input wire reed,
-  input wire reset,
+  input wire reset_in,
   input wire [7:0] circ,
 
   output wire AVS,
@@ -37,7 +37,7 @@ wire [AVG_SPEED_OUT_WIDTH-1:0] avg_speed;
 wire [13:0] distance;
 wire [15:0] trip_dist;
 assign trip_dist = {2'b0, distance};
-wire [19:0] HMS_time;
+wire [18:0] HMS_time;
 wire[12:0] sec_accum;
 wire[12:0] min_accum;
 
@@ -47,6 +47,13 @@ wire[13:0] centimeters;
 wire div_select;
 
 wire dist_enable, tim_enable, max_enable;
+
+wire reset;
+reg reset_thing = 1;
+always @(posedge clock) begin
+    if(reset_thing == 1) reset_thing <= 0;
+end
+assign reset = reset_in || reset_thing;
 
 control#(
     .SPEED_WIDTH            (SPEED_OUT_WIDTH),

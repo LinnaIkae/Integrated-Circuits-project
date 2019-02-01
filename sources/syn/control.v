@@ -185,7 +185,11 @@ module control#(
         //default outputs
         speed_start <= 0;
         avg_speed_start <= 0;
-        if(half_sec_toggle && speed_started == 0) begin
+        if(reset) begin
+            avg_speed_r <= 0;
+            speed_r <= 0;
+        end
+        else if(half_sec_toggle && speed_started == 0) begin
             speed_start <= 1;
             speed_started <= 1;
             avg_speed_started <= 0;
