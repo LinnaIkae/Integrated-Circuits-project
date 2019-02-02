@@ -58,8 +58,8 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
     //out
     output wire [WIDTH_out-1:0] avg_speed; 
     output reg valid = 0;
-    output reg [WIDTH_div-1:0] dividend = 0;
-    output reg [WIDTH_div-1:0] divisor = 0;
+    output reg [25:0] dividend = 0;
+    output reg [25:0] divisor = 0;
     
     //internal variables
     reg [1:0]waiting = 0;
@@ -132,7 +132,7 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
                 end 
             end
             if (waiting == 1 && Busy == 0 )begin
-                dividend <= A[WIDTH_div-1:0];
+                dividend <= A[25:0];
                 divisor <= B;
                 waiting <= 2;
                 flag_sec2 <= flag_sec;

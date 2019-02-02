@@ -35,7 +35,7 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
     input [7:0] circ;
     output reg [WIDTH_speed-1:0] speed;
     output reg valid = 0;
-    output reg[WIDTH-1:0] dividend, divisor;
+    output reg[25:0] dividend, divisor;
     input [WIDTH-1:0] dividerres;
     
     //internal variables
@@ -76,7 +76,7 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
                 end
             end
             if (waiting == 1 && Busy == 0)begin
-                dividend <= cico[WIDTH+8-1:8];
+                dividend <= 0 + cico[WIDTH+8-1:8];
                 divisor <= tim;
                 waiting <= 2;
             end
