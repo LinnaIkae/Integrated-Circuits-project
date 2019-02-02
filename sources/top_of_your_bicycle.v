@@ -23,9 +23,9 @@ module TOP_OF_YOUR_BICYCLE (
 );
 
 parameter MAX_SPEED_WIDTH = 7; //only 7bits are effectively used instead of 12
-parameter SPEED_IN_WIDTH = 26;
+parameter SPEED_IN_WIDTH = 16;
 parameter SPEED_OUT_WIDTH = 7; //only 7bits are effectively used instead of 12
-parameter AVG_SPEED_IN_WIDTH = 26;
+parameter AVG_SPEED_IN_WIDTH = 16;
 parameter AVG_SPEED_OUT_WIDTH = 10; //10bits are required for 99.9 range 
 parameter DIV_WIDTH = 26;
 
@@ -129,8 +129,8 @@ Max_speed #(MAX_SPEED_WIDTH) max_speed_inst(
 );
 
 
-wire[SPEED_IN_WIDTH-1:0] divisor1;
-wire[SPEED_IN_WIDTH-1:0] dividend1;
+wire[DIV_WIDTH-1:0] divisor1;
+wire[DIV_WIDTH-1:0] dividend1;
 
 Speed #(
     .WIDTH          (SPEED_IN_WIDTH), 
@@ -151,8 +151,8 @@ Speed #(
     .valid          (speed_valid)
 );
 
-wire[AVG_SPEED_IN_WIDTH-1:0] divisor2;
-wire[AVG_SPEED_IN_WIDTH-1:0] dividend2;
+wire[DIV_WIDTH-1:0] divisor2;
+wire[DIV_WIDTH-1:0] dividend2;
 
 Average_speed #(
     .WIDTH_div      (AVG_SPEED_IN_WIDTH), 
