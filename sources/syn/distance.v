@@ -27,20 +27,23 @@ module distance(
     input wire reed,
     input wire[7:0] circ,
     input wire enable,
+    input wire reset_from_tim,
     
     output wire[13:0] distance,
-    output wire[13:0] centimeters
+    output wire[13:0] centimeters,
+    output reg reset_to_tim
     );
     
     reg[13:0] circ_cnt_r;
     reg[13:0] distance_r;
+    
     wire compare;
     
     assign compare = (circ_cnt_r >= 10000)? 1: 0;
     
     always @(posedge clock)
     begin: circ_increment
-        if (reset == 1 || compare == 1) begin
+        if (reset == 1 || compare == 1 || reset_from_tim) begin
             circ_cnt_r <= 0;
         end
         else if(reed == 1 && enable == 1) begin
@@ -51,11 +54,13 @@ module distance(
     
     always @(posedge clock)
     begin: dist_increment
-        if(reset == 1) begin
+        reset_to_tim <= 0;
+        if(reset == 1 || reset_from_tim) begin
             distance_r <= 0;
         end
         else if(distance > 9999) begin
             distance_r <= 0;
+            reset_to_tim <= 1;
         end
         else if(compare == 1) begin
            distance_r <= distance_r + 1;     

@@ -5,12 +5,14 @@ module timing(
     input wire clock,
     input wire reset,
     input wire enable,
+    input wire reset_from_dist,
     
     output wire[18:0] HMS_time, //hours, minutes, seconds
     output wire[12:0] sec_accum,
     output wire[12:0] min_accum,
     output wire half_sec_pulse,
-    output wire sec_pulse
+    output wire sec_pulse,
+    output reg reset_to_dist
     );
     
     reg[9:0] cycles_r;
@@ -23,6 +25,7 @@ module timing(
     reg sec_pulse_r;
     reg sec_pulse_done_r;
     
+    
     wire[5:0] secs;
     wire cycles_at_lim;
     assign cycles_at_lim = (cycles_r == 1023)? 1: 0;
@@ -30,7 +33,7 @@ module timing(
     always @(posedge clock)
     begin: cycles_inc
     
-        if (reset == 1 || cycles_at_lim) begin
+        if (reset == 1 || cycles_at_lim || reset_from_dist) begin
             cycles_r <= 0;
         end
         else begin
@@ -48,13 +51,18 @@ module timing(
         half_sec_pulse_r <= 0;
         sec_pulse_r <= 0;
         
-        if (reset == 1 || (min_r == 59 && hrs_r == 99)) begin
+        if (reset == 1 || (min_r == 59 && hrs_r == 99) || reset_from_dist) begin
             half_sec_r <= 0;
             sec_accum_r <= 0;
             min_r <= 0;
             min_accum_r <= 0;
             hrs_r <= 0;
             sec_pulse_done_r <= 0;
+        end
+        if (min_r == 59 && hrs_r == 99) begin
+            reset_to_dist <= 1;
+        end else begin
+            reset_to_dist <= 0;
         end
         if (cycles_at_lim) begin
             if(enable == 1) half_sec_r <= half_sec_r + 1;
