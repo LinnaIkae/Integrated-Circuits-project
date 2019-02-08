@@ -92,7 +92,7 @@ module Speed(en, rst, clk, reed, circ, start, speed, valid, dividend, divisor, d
             if (waiting == 4 && Ready == 1)begin
                 if(cnt > 4000) speed <= 0; //FOR VERY LOW SPEEDS
                 else begin
-                    speed <= (dividerres[WIDTH_speed-1:0]>99) ? 99 : dividerres[WIDTH_speed-1:0]; //detects overflow
+                    speed <= (dividerres>99) ? 99 : dividerres[WIDTH_speed-1:0]; //detects overflow
                 end
                 valid <=1;
                 waiting <= 0;
