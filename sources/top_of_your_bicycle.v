@@ -40,6 +40,8 @@ assign trip_dist = {2'b0, distance};
 wire [18:0] HMS_time;
 wire[12:0] sec_accum;
 wire[12:0] min_accum;
+wire reset_tim_to_dist;
+wire reset_dist_to_tim;
 
 wire speed_enable, speed_valid, speed_start;
 wire avg_speed_enable, avg_speed_valid, avg_speed_start;
@@ -106,7 +108,9 @@ distance distance_inst(
     .circ           (circ),
     .enable         (dist_enable),
     .distance       (distance),
-    .centimeters    (centimeters)
+    .centimeters    (centimeters),
+    .reset_from_tim (reset_tim_to_dist),
+    .reset_to_tim   (reset_dist_to_tim)
 );
 
 timing timing_inst(
@@ -117,7 +121,10 @@ timing timing_inst(
     .sec_accum      (sec_accum),
     .min_accum      (min_accum),
     .sec_pulse      (sec_pulse),
-    .half_sec_pulse (half_sec_pulse)
+    .half_sec_pulse (half_sec_pulse),
+    .reset_to_dist  (reset_tim_to_dist),
+    .reset_from_dist(reset_dist_to_tim)
+    
 );
 
 Max_speed #(MAX_SPEED_WIDTH) max_speed_inst(
