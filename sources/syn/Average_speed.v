@@ -82,24 +82,26 @@ module Average_speed( clk, en, rst, start, trip_time_sec, trip_time_min, trip_di
             divisor <= 0;
             A <= 0;
             B <= 0;
+            flag_sec <= 0;
         end
         else if (en == 1) begin
-            if (/*trip_time_sec<4094 && trip_distance <= 5*/ 1==1) begin //limit time not being over 15bits and ditance too not over 16bits
+            if (trip_time_sec < 8190) begin //limit time not being over 15bits and ditance too not over 16bits
                 A <= trip_cents + (trip_distance * 10000);
                 B <= (trip_time_sec * 10'b1011000111) >> 8; //multiply by 2.75 - conversion from cm/ to km/h
+                flag_sec <= 0;
             end else begin
                 if (trip_time_sec<6000)begin
                     if(trip_distance<19)begin
-                        A <=  trip_distance * CONST_SEC;
+                        A <= trip_distance * CONST_SEC;
                         B <= trip_time_sec;
                         flag_sec <= 0;
                     end else begin
                         if(trip_distance<1000)begin
-                            A <= trip_distance * 60;
+                            A <= trip_distance * 60; 
                             B <= trip_time_sec;
                             flag_sec <= 1;
                         end else begin
-                            A <= trip_distance ;//easter egg, should never occur
+                            A <= trip_distance; //easter egg, should never occur
                             B <= trip_time_min;
                             flag_sec <= 1;
                         end
